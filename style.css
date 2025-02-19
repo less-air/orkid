@@ -9,7 +9,7 @@
 body {
     font-family: 'Courier New', Courier, monospace; /* Console-style font */
     line-height: 1.6;
-    background-color: #111; /* Darker black background */
+    background-color: black; /* Darker black background */
     color: #C7A1FF; /* Bright purple text */
     font-size: 18px; /* Console-like text size */
     padding: 0;
@@ -20,7 +20,7 @@ body {
 
 /* Header styling */
 header {
-    background-color: #111; /* Darker black */
+    background-color: black; /* Darker black */
     color: #C7A1FF;
     padding: 20px;
     text-align: center;
@@ -56,7 +56,7 @@ nav ul li a:hover {
 
 /* Hero section */
 .hero {
-    background-color: #111; /* Darker black */
+    background-color: black; /* Darker black */
     color: #C7A1FF;
     text-align: center;
     padding: 50px 20px;
@@ -93,53 +93,4 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Contact Section */
-#contact p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #C7A1FF;
-}
-
-#contact .cta-button {
-    background-color: #C7A1FF;
-    color: black;
-    padding: 12px 25px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-#contact .cta-button:hover {
-    background-color: #B08DFF;
-}
-
-/* Footer */
-footer {
-    background-color: #111; /* Darker black */
-    color: #C7A1FF;
-    text-align: center;
-    padding: 10px;
-    margin-top: 40px;
-    border-top: 2px solid #C7A1FF;
-}
-
-@media (max-width: 768px) {
-    body {
-        font-size: 16px; /* Adjust font size for smaller screens */
-    }
-
-    header {
-        padding: 15px;
-    }
-
-    .hero {
-        padding: 30px 15px;
-    }
-
-    .cta-button {
-        padding: 8px 18px;
-    }
-}
+/*
