@@ -7,18 +7,21 @@
 
 /* Set up the basic body and font */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Courier New', Courier, monospace; /* Console-style font */
     line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: black; /* Black background */
+    color: #C7A1FF; /* Bright purple text */
+    font-size: 18px; /* Console-like text size */
+    padding: 20px;
 }
 
 /* Header styling */
 header {
-    background-color: #333;
-    color: white;
+    background-color: black;
+    color: #C7A1FF;
     padding: 20px;
     text-align: center;
+    border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
 }
 
 header .logo h1 {
@@ -39,7 +42,7 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: white;
+    color: #C7A1FF;
     font-weight: bold;
 }
 
@@ -56,8 +59,8 @@ main {
 
 /* Hero section */
 .hero {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #111; /* Slightly darker black for contrast */
+    color: #C7A1FF;
     text-align: center;
     padding: 50px 20px;
     margin-bottom: 40px;
@@ -73,8 +76,8 @@ main {
 }
 
 .cta-button {
-    background-color: #fff;
-    color: #4CAF50;
+    background-color: #C7A1FF;
+    color: black;
     padding: 10px 20px;
     text-decoration: none;
     font-weight: bold;
@@ -83,7 +86,7 @@ main {
 }
 
 .cta-button:hover {
-    background-color: #45a049;
+    background-color: #B08DFF; /* Slightly darker purple for hover effect */
     color: white;
 }
 
@@ -104,12 +107,13 @@ section {
 }
 
 .service-item {
-    background-color: #fff;
+    background-color: #111; /* Darker background for sections */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex: 1;
     margin-right: 20px;
+    color: #C7A1FF;
 }
 
 .service-item:last-child {
@@ -122,37 +126,33 @@ section {
 }
 
 /* Contact Section */
-form {
-    display: grid;
-    gap: 15px;
-}
-
-form input, form textarea {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-form button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px;
+#contact p {
     font-size: 1.2rem;
-    border: none;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #C7A1FF;
+}
+
+#contact .cta-button {
+    background-color: #C7A1FF;
+    color: black;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
     border-radius: 5px;
-    cursor: pointer;
+    text-align: center;
+    display: inline-block;
     transition: background-color 0.3s ease;
 }
 
-form button:hover {
-    background-color: #45a049;
+#contact .cta-button:hover {
+    background-color: #B08DFF;
 }
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: black;
+    color: #C7A1FF;
     text-align: center;
     padding: 10px;
     margin-top: 40px;
