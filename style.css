@@ -116,3 +116,16 @@ footer {
         padding: 8px 18px;
     }
 }
+/* Style for links */
+a {
+    color: #C7A1FF; /* Bright neon purple */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Optional: Make the links bold for emphasis */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Neon glow effect on hover */
+a:hover {
+    color: #D9A2FF; /* Slightly lighter purple on hover */
+    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF; /* Neon glow effect */
+}
