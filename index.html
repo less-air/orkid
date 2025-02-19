@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORKID</title>
     <link rel="stylesheet" href="style.css"> <!-- Make sure the CSS file is linked -->
+    
+    <!-- Load Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Load GLTFLoader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/GLTFLoader.js"></script>
 </head>
 <body>
     <header>
@@ -21,23 +26,9 @@
 
     <main>
         <section id="home" class="hero">
-            <!-- Add Sketchfab Embed Code Here -->
-            <div class="sketchfab-embed-wrapper">
-                <iframe 
-                    title="Orchid" 
-                    frameborder="0" 
-                    allowfullscreen 
-                    mozallowfullscreen="true" 
-                    webkitallowfullscreen="true" 
-                    allow="autoplay; fullscreen; xr-spatial-tracking" 
-                    xr-spatial-tracking 
-                    execution-while-out-of-viewport 
-                    execution-while-not-rendered 
-                    web-share 
-                    src="https://sketchfab.com/models/d2bb807c859140d98ae34d0b1065bda9/embed?transparent=1&ui_theme=dark">
-                </iframe>
-            </div>
-
+            <!-- 3D model container -->
+            <div id="three-container"></div> <!-- This will hold the 3D scene -->
+            
             <!-- Welcome text -->
             <h2>Welcome to ORKID</h2>
             <p>Art - Music - Clothing</p>
@@ -47,5 +38,37 @@
     <footer>
         <p>&copy; 2025 ORKID. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Initialize Three.js scene
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('three-container').appendChild(renderer.domElement); // Append to a specific container
+
+        // Load the model from the GitHub repository (use the raw URL)
+        var loader = new THREE.GLTFLoader();
+        loader.load('https://raw.githubusercontent.com/less-air/orkid/main/orchid2.glb', function(gltf) {
+            scene.add(gltf.scene);
+            gltf.animations; // animations (optional)
+            gltf.scene; // the 3D model
+        });
+
+        camera.position.z = 5;
+
+        var animate = function() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        };
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
 </body>
 </html>
