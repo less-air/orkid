@@ -12,7 +12,18 @@ body {
     background-color: black; /* Black background */
     color: #C7A1FF; /* Bright purple text */
     font-size: 18px; /* Console-like text size */
-    padding: 20px;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center text inside body */
+}
+
+/* Ensure the content does not overflow the screen */
+main {
+    max-width: 1200px;
+    width: 100%;
 }
 
 /* Header styling */
@@ -24,39 +35,6 @@ header {
     border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
 }
 
-header .logo h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 10px;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #C7A1FF;
-    font-weight: bold;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* Main content area */
-main {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 /* Hero section */
 .hero {
     background-color: #111; /* Slightly darker black for contrast */
@@ -64,15 +42,6 @@ main {
     text-align: center;
     padding: 50px 20px;
     margin-bottom: 40px;
-}
-
-.hero h2 {
-    font-size: 2.5rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin: 20px 0;
 }
 
 .cta-button {
@@ -96,40 +65,10 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* About and Services Section */
-section {
-    margin-bottom: 40px;
-}
-
-.service-list {
-    display: flex;
-    justify-content: space-between;
-}
-
-.service-item {
-    background-color: #111; /* Darker background for sections */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    margin-right: 20px;
-    color: #C7A1FF;
-}
-
-.service-item:last-child {
-    margin-right: 0;
-}
-
-.service-item h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
 /* Contact Section */
 #contact p {
     font-size: 1.2rem;
     margin-bottom: 20px;
-    text-align: center;
     color: #C7A1FF;
 }
 
