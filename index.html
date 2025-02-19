@@ -1,101 +1,34 @@
-/* Reset some default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <link rel="stylesheet" href="style.css"> <!-- Make sure the CSS file is linked -->
+</head>
+<body>
+    <header>
+        <h1>Your Website</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-/* Set up the basic body and font */
-body {
-    font-family: 'Courier New', Courier, monospace; /* Console-style font */
-    line-height: 1.6;
-    background-color: black; /* Black background */
-    color: #C7A1FF; /* Bright purple text */
-    font-size: 18px; /* Console-like text size */
-    padding: 0;
-    display: flex;
-    flex-direction: column; /* Stack the sections (header, main content, footer) vertically */
-    height: 100vh; /* Full viewport height */
-}
+    <main>
+        <section id="home" class="hero">
+            <h2>Welcome to Our Website</h2>
+            <p>Your adventure starts here</p>
+            <a href="#contact" class="cta-button">Contact Us</a>
+        </section>
+    </main>
 
-/* Header styling */
-header {
-    background-color: black;
-    color: #C7A1FF;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
-    z-index: 10; /* Ensure header stays on top */
-}
-
-/* Hero section */
-.hero {
-    background-color: #111; /* Slightly darker black for contrast */
-    color: #C7A1FF;
-    text-align: center;
-    padding: 50px 20px;
-    margin-bottom: 40px;
-}
-
-.cta-button {
-    background-color: #C7A1FF;
-    color: black;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.cta-button:hover {
-    background-color: #B08DFF; /* Slightly darker purple for hover effect */
-    color: white;
-}
-
-/* Main content area */
-main {
-    flex: 1; /* Make the main content take up the remaining space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Section headings */
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-/* Contact Section */
-#contact p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #C7A1FF;
-}
-
-#contact .cta-button {
-    background-color: #C7A1FF;
-    color: black;
-    padding: 12px 25px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    text-align: center;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-#contact .cta-button:hover {
-    background-color: #B08DFF;
-}
-
-/* Footer */
-footer {
-    background-color: black;
-    color: #C7A1FF;
-    text-align: center;
-    padding: 10px;
-    margin-top: 40px;
-    border-top: 2px solid #C7A1FF;
-}
+    <footer>
+        <p>&copy; 2025 Your Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
