@@ -14,16 +14,8 @@ body {
     font-size: 18px; /* Console-like text size */
     padding: 0;
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    flex-direction: column; /* Stack the sections (header, main content, footer) vertically */
     height: 100vh; /* Full viewport height */
-    text-align: center; /* Center text inside body */
-}
-
-/* Ensure the content does not overflow the screen */
-main {
-    max-width: 1200px;
-    width: 100%;
 }
 
 /* Header styling */
@@ -33,6 +25,7 @@ header {
     padding: 20px;
     text-align: center;
     border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
+    z-index: 10; /* Ensure header stays on top */
 }
 
 /* Hero section */
@@ -57,6 +50,15 @@ header {
 .cta-button:hover {
     background-color: #B08DFF; /* Slightly darker purple for hover effect */
     color: white;
+}
+
+/* Main content area */
+main {
+    flex: 1; /* Make the main content take up the remaining space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 /* Section headings */
@@ -95,4 +97,5 @@ footer {
     text-align: center;
     padding: 10px;
     margin-top: 40px;
+    border-top: 2px solid #C7A1FF;
 }
