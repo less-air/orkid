@@ -9,7 +9,7 @@
 body {
     font-family: 'Courier New', Courier, monospace; /* Console-style font */
     line-height: 1.6;
-    background-color: black; /* Black background */
+    background-color: #111; /* Darker black background */
     color: #C7A1FF; /* Bright purple text */
     font-size: 18px; /* Console-like text size */
     padding: 0;
@@ -20,7 +20,7 @@ body {
 
 /* Header styling */
 header {
-    background-color: black;
+    background-color: #111; /* Darker black */
     color: #C7A1FF;
     padding: 20px;
     text-align: center;
@@ -30,7 +30,7 @@ header {
 
 /* Hero section */
 .hero {
-    background-color: #111; /* Slightly darker black for contrast */
+    background-color: #111; /* Darker black */
     color: #C7A1FF;
     text-align: center;
     padding: 50px 20px;
@@ -92,10 +92,27 @@ h2 {
 
 /* Footer */
 footer {
-    background-color: black;
+    background-color: #111; /* Darker black */
     color: #C7A1FF;
     text-align: center;
     padding: 10px;
     margin-top: 40px;
     border-top: 2px solid #C7A1FF;
+}
+@media (max-width: 768px) {
+    body {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+    
+    header {
+        padding: 15px;
+    }
+    
+    .hero {
+        padding: 30px 15px;
+    }
+    
+    .cta-button {
+        padding: 8px 18px;
+    }
 }
