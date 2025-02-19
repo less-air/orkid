@@ -28,6 +28,32 @@ header {
     z-index: 10; /* Ensure header stays on top */
 }
 
+/* Remove bullet points from the navigation menu */
+nav ul {
+    list-style-type: none; /* Removes the bullets */
+    padding: 0; /* Removes any padding around the list */
+    margin: 0; /* Removes any margin around the list */
+}
+
+/* Style for the navigation links */
+nav ul li {
+    display: inline; /* Makes the list items appear in a horizontal row */
+    margin-right: 20px; /* Adds space between the list items */
+}
+
+nav ul li a {
+    color: #C7A1FF; /* Set the neon purple color for links */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold;
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Neon glow effect on hover */
+nav ul li a:hover {
+    color: #D9A2FF; /* Slightly lighter purple on hover */
+    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF; /* Neon glow effect */
+}
+
 /* Hero section */
 .hero {
     background-color: #111; /* Darker black */
@@ -99,33 +125,21 @@ footer {
     margin-top: 40px;
     border-top: 2px solid #C7A1FF;
 }
+
 @media (max-width: 768px) {
     body {
         font-size: 16px; /* Adjust font size for smaller screens */
     }
-    
+
     header {
         padding: 15px;
     }
-    
+
     .hero {
         padding: 30px 15px;
     }
-    
+
     .cta-button {
         padding: 8px 18px;
     }
-}
-/* Style for links */
-a {
-    color: #C7A1FF; /* Bright neon purple */
-    text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Optional: Make the links bold for emphasis */
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
-}
-
-/* Neon glow effect on hover */
-a:hover {
-    color: #D9A2FF; /* Slightly lighter purple on hover */
-    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF; /* Neon glow effect */
 }
