@@ -1,93 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>orKid</title>
+/* Set up the basic body and font */
+body {
+    font-family: 'Courier New', Courier, monospace; /* Console-style font */
+    line-height: 1.6;
+    background-color: black; /* Black background */
+    color: #C7A1FF; /* Bright purple text */
+    font-size: 18px; /* Console-like text size */
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Stack the sections (header, main content, footer) vertically */
+    height: 100vh; /* Full viewport height */
+}
 
-    <!-- Link to your CSS file (if you have one) -->
-    <link rel="stylesheet" href="style.css">
+/* Header styling */
+header {
+    background-color: black;
+    color: #C7A1FF;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
+    z-index: 10; /* Ensure header stays on top */
+}
 
-    <!-- Google Fonts (optional) -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+/* Hero section */
+.hero {
+    background-color: #111; /* Slightly darker black for contrast */
+    color: #C7A1FF;
+    text-align: center;
+    padding: 50px 20px;
+    margin-bottom: 40px;
+}
 
-    <!-- Favicon (optional) -->
-    <link rel="icon" href="favicon.ico">
+.cta-button {
+    background-color: #C7A1FF;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
 
-    <script src="script.js"></script>
+.cta-button:hover {
+    background-color: #B08DFF; /* Slightly darker purple for hover effect */
+    color: white;
+}
 
-</head>
+/* Main content area */
+main {
+    flex: 1; /* Make the main content take up the remaining space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <h1>ORKID</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+/* Section headings */
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
 
-    <!-- Main Content Section -->
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h2>We are ORKID</h2>
-                <p>Art - Music - Apparell</p>
-                <a href="#gallery" class="cta-button">See more</a>
-            </div>
-        </section>
+/* Contact Section */
+#contact p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #C7A1FF;
+}
 
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Us</h2>
-            <p>We are an art collective based in Limerick, Ireland</p>
-        </section>
+#contact .cta-button {
+    background-color: #C7A1FF;
+    color: black;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
 
-        <!-- Services Section -->
-        <section id="gallery">
-            <h2>Gallery</h2>
-            <div class="gallery-list">
-                <div class="gallery-item">
-                    <h3>Art</h3>
-                    <p>Visual projects</p>
-                </div>
-                <div class="gallery-item">
-                    <h3>Music</h3>
-                    <p>Audio projects</p>
-                </div>
-                <div class="gallery-item">
-                    <h3>Clothing</h3>
-                    <p>Textile projects</p>
-                </div>
-            </div>
-        </section>
+#contact .cta-button:hover {
+    background-color: #B08DFF;
+}
 
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>- - -</p>
-            <a href="https://www.instagram.com/orkid.ie" target="_blank" class="cta-button">Follow Us on Instagram</a>
-        </section>
-
-    </main>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 ORKID. All rights reserved.</p>
-    </footer>
-
-    <!-- Link to your JS file (optional) -->
-    <script src="script.js"></script>
-</body>
-
-</html>
+/* Footer */
+footer {
+    background-color: black;
+    color: #C7A1FF;
+    text-align: center;
+    padding: 10px;
+    margin-top: 40px;
+    border-top: 2px solid #C7A1FF;
+}
