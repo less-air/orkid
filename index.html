@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORKID</title>
     <link rel="stylesheet" href="style.css"> <!-- Make sure the CSS file is linked -->
+    <style>
+        /* Ensure the iframe is responsive and does not crop */
+        .sketchfab-embed-wrapper {
+            position: relative;
+            width: 100%; /* Full width */
+            height: 600px; /* Set a fixed height or adjust as needed */
+            max-width: 100%;
+            overflow: hidden;
+        }
+        
+        /* Set the iframe to take full space within the wrapper */
+        .sketchfab-embed-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,9 +39,9 @@
         <section id="home" class="hero">
             <!-- Embed the Sketchfab model -->
             <div class="sketchfab-embed-wrapper">
-                <iframe title="Orchid3" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/d5d7d14d26b342258f2af90173b18b5d/embed?autospin=1&camera=0&preload=1&transparent=1&ui_hint=0" style="width: 100%; height: 600px;"></iframe>
+                <iframe title="Orchid3" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/d5d7d14d26b342258f2af90173b18b5d/embed?autospin=1&camera=0&preload=1&transparent=1&ui_hint=0"></iframe>
             </div>
-            
+
             <!-- Welcome text -->
             <h2>Welcome to ORKID</h2>
             <p>Art - Music - Clothing</p>
