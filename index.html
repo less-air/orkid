@@ -5,43 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ORKID</title>
     <link rel="stylesheet" href="style.css"> <!-- Make sure the CSS file is linked -->
-    
-    <!-- Load Three.js and GLTFLoader as modules -->
-    <script type="module">
-        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
-        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
-
-        // Initialize Three.js scene
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('three-container').appendChild(renderer.domElement); // Append to a specific container
-
-        // Load the model from the GitHub repository (use the raw URL)
-        var loader = new GLTFLoader();
-        loader.load('https://raw.githubusercontent.com/less-air/orkid/main/orchid3.glb', function(gltf) {
-            scene.add(gltf.scene);
-            gltf.animations; // animations (optional)
-        }, undefined, function(error) {
-            console.error('An error occurred while loading the model: ', error);
-        });
-
-        camera.position.z = 5;
-
-        var animate = function() {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
-        };
-        animate();
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-        });
-    </script>
 </head>
 <body>
     <header>
@@ -57,7 +20,12 @@
 
     <main>
         <section id="home" class="hero">
-            <div id="three-container" style="width: 100%; height: 600px;"></div>
+            <!-- Embed the Sketchfab model -->
+            <div class="sketchfab-embed-wrapper">
+                <iframe title="Orchid3" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/d5d7d14d26b342258f2af90173b18b5d/embed?autospin=1&camera=0&preload=1&transparent=1&ui_hint=0" style="width: 100%; height: 600px;"></iframe>
+            </div>
+            
+            <!-- Welcome text -->
             <h2>Welcome to ORKID</h2>
             <p>Art - Music - Clothing</p>
         </section>
