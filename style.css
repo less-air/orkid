@@ -96,8 +96,8 @@ h2 {
 /* Set a fixed size of 1280x1280px for the Sketchfab embed */
 .sketchfab-embed-wrapper {
     position: relative;
-    width: 1280px; /* Fixed width */
-    height: 1280px; /* Fixed height */
+    width: 720px; /* Fixed width */
+    height: 720px; /* Fixed height */
     max-width: 100%; /* Ensure it does not overflow */
     overflow: hidden;
     margin: 0 auto; /* Center the model */
