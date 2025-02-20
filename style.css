@@ -93,13 +93,14 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Make the Sketchfab embed responsive with 16:9 aspect ratio and bigger */
+/* Set a fixed size of 1280x1280px for the Sketchfab embed */
 .sketchfab-embed-wrapper {
     position: relative;
-    width: 100%; /* Full width */
-    padding-top: 35%; /* Decrease this value to make the model bigger (it keeps 16:9 ratio) */
+    width: 1280px; /* Fixed width */
+    height: 1280px; /* Fixed height */
+    max-width: 100%; /* Ensure it does not overflow */
     overflow: hidden;
-    max-width: 100%;
+    margin: 0 auto; /* Center the model */
 }
 
 /* Set the iframe to take full space within the wrapper */
