@@ -20,7 +20,7 @@ body {
     transition: color 0.3s ease; /* Smooth color transition for text */
 }
 
-/* Organic branch-like lines covering the whole screen */
+/* Floral pattern background */
 body::before {
     content: '';
     position: absolute;
@@ -28,9 +28,9 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Cpath d=%22M10,90 C30,60 50,70 70,50 C90,30 90,10 50,0 C30,10 20,20 10,30 C5,40 0,60 10,70 C20,80 40,80 50,70 C60,60 70,50 90,40 C100,30 100,10 90,0%22 stroke=%22%23C7A1FF%22 fill=%22transparent%22 stroke-width=%221%22/%3E%3Cpath d=%22M20,90 C40,60 60,80 80,60 C100,40 90,20 70,10 C50,20 40,30 20,50 C10,60 10,80 20,90 C30,80 50,70 60,60 C80,50 90,30 80,20 C70,10 50,10 40,0%22 stroke=%22%23C7A1FF%22 fill=%22transparent%22 stroke-width=%221%22/%3E%3Cpath d=%22M5,85 C25,55 45,70 65,50 C85,30 95,20 75,10 C55,20 45,30 25,50 C10,60 5,75 5,85 C15,80 35,60 45,50 C55,40 70,30 85,20 C95,10 95,0 80,0%22 stroke=%22%23C7A1FF%22 fill=%22transparent%22 stroke-width=%221%22/%3E%3Cpath d=%22M15,80 C35,50 55,60 75,40 C95,20 85,10 65,0 C45,10 35,20 15,30 C5,40 5,50 15,60 C25,70 45,70 55,60 C65,50 75,40 95,30 C105,20 105,0 95,0%22 stroke=%22%23C7A1FF%22 fill=%22transparent%22 stroke-width=%221%22/%3E%3Cpath d=%22M30,70 C50,40 70,50 90,30 C110,10 100,0 80,0 C60,10 50,20 30,30 C20,40 20,60 30,70 C40,80 60,80 70,70 C80,60 90,50 100,40 C110,30 110,10 100,0%22 stroke=%22%23C7A1FF%22 fill=%22transparent%22 stroke-width=%221%22/%3E%3C/svg%3E');
+    background: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2230%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2215%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%225%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q130,70 160,100 Q130,130 100,100%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q70,130 40,100 Q70,70 100,100%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q130,130 160,130 Q130,160 100,130%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q70,160 40,130 Q70,130 100,130%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3C/svg%3E');
     background-size: 100% 100%;
-    opacity: 0.05; /* Reduced opacity for a more subtle effect */
+    opacity: 0.1; /* Reduced opacity for a more subtle effect */
     pointer-events: none; /* So the background doesn't interfere with user interaction */
 }
 
