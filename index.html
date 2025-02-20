@@ -27,7 +27,7 @@
     <main>
         <section id="home" class="hero">
             <!-- 3D model container -->
-            <div id="three-container"></div> <!-- This will hold the 3D scene -->
+            <div id="three-container" style="width: 100%; height: 600px;"></div> <!-- Add height and width -->
             
             <!-- Welcome text -->
             <h2>Welcome to ORKID</h2>
@@ -52,7 +52,8 @@
         loader.load('https://raw.githubusercontent.com/less-air/orkid/main/orchid2.glb', function(gltf) {
             scene.add(gltf.scene);
             gltf.animations; // animations (optional)
-            gltf.scene; // the 3D model
+        }, undefined, function(error) {
+            console.error('An error occurred while loading the model: ', error);
         });
 
         camera.position.z = 5;
