@@ -6,11 +6,9 @@
     <title>ORKID</title>
     <link rel="stylesheet" href="style.css"> <!-- Make sure the CSS file is linked -->
     
-    <!-- Load Three.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
-    
-    <!-- Load GLTFLoader as a module from the official Three.js repo -->
+    <!-- Load Three.js and GLTFLoader as modules -->
     <script type="module">
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
         import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
 
         // Initialize Three.js scene
