@@ -25,7 +25,7 @@ header {
     background: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2230%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2215%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%225%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q130,70 160,100 Q130,130 100,100%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q70,130 40,100 Q70,70 100,100%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q130,130 160,130 Q130,160 100,130%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q70,160 40,130 Q70,130 100,130%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3C/svg%3E');
     background-repeat: repeat; /* Keep the pattern repeating */
     background-size: 150px 150px; /* Adjust the size of the repeating pattern */
-    background-position: top left; /* Start the pattern from the top left corner */
+    background-position: center; /* Start the pattern from the top left corner */
     color: #C7A1FF; /* Set the text color to match */
     padding: 20px;
     text-align: center;
@@ -41,7 +41,8 @@ header h1 {
     font-weight: bold;
     letter-spacing: 1px;
     transition: all 0.3s ease; /* Smooth transition */
-    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF; /* Neon glow effect */
+    text-decoration: none; /* Remove underline */
+    opacity: 1;
 }
 
 /* Header text hover effect */
@@ -68,6 +69,7 @@ nav ul li a {
     color: #C7A1FF; /* Set the neon purple color for links */
     text-decoration: none; /* Remove underline */
     font-weight: bold;
+    opacity: 1;
     transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
 
