@@ -93,14 +93,13 @@ h2 {
     margin-bottom: 20px;
 }
 
-/*
-/* Make the Sketchfab embed responsive */
+/* Make the Sketchfab embed responsive with 16:9 aspect ratio */
 .sketchfab-embed-wrapper {
     position: relative;
     width: 100%; /* Full width */
-    height: 600px; /* Set a fixed height or adjust as needed */
-    max-width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio (9 / 16 * 100 = 56.25%) */
     overflow: hidden;
+    max-width: 100%;
 }
 
 /* Set the iframe to take full space within the wrapper */
