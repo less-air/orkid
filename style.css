@@ -15,13 +15,13 @@ body {
     font-size: 18px; /* Console-like text size */
     padding: 0;
     display: flex;
-    flex-direction: row; /* Changed from column to row to align the navigation and content side by side */
+    flex-direction: column; /* Stack the sections (header, main content, footer) vertically */
     height: 100vh; /* Full viewport height */
     position: relative;
     transition: color 0.3s ease; /* Smooth color transition for text */
 }
 
-/* Header styling */
+/* Floral pattern for the header */
 header {
     background: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22 viewBox=%220 0 200 200%22%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2230%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2215%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%225%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q130,70 160,100 Q130,130 100,100%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q70,130 40,100 Q70,70 100,100%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q130,130 160,130 Q130,160 100,130%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3Cpath d=%22M100,100 Q70,160 40,130 Q70,130 100,130%22 stroke=%22%23C7A1FF%22 stroke-width=%222%22 fill=%22transparent%22/%3E%3C/svg%3E');
     background-repeat: repeat; /* Keep the pattern repeating */
@@ -33,33 +33,37 @@ header {
     border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
     z-index: 10; /* Ensure header stays on top */
     opacity: 1; /* Adjust this to change the opacity of the background pattern */
-    flex: 1; /* Ensure header takes up a portion of the page */
 }
 
-/* Navigation styling */
-nav {
-    width: 200px; /* Set fixed width for navigation */
-    background-color: #1b1b1b; /* Dark background for navigation */
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: fixed; /* Fix the navigation to the left of the page */
-    top: 0;
-    left: 0;
-    height: 100vh; /* Ensure the navigation takes up the full height */
-    z-index: 5; /* Ensure it stays above the background */
+/* Header text (h1) styling */
+header h1 {
+    color: #C7A1FF; /* Set text color to neon purple */
+    font-size: 2.5rem; /* Increase the size for better visibility */
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease; /* Smooth transition */
+    text-decoration: none; /* Remove underline */
+    opacity: 1;
 }
 
+/* Header text hover effect */
+header h1:hover {
+    color: #D9A2FF; /* Slightly lighter purple on hover */
+    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #D9A2FF; /* Neon glow effect */
+    cursor: pointer; /* Change cursor to indicate interactivity */
+}
+
+/* Remove bullet points from the navigation menu */
 nav ul {
     list-style-type: none; /* Removes the bullets */
     padding: 0; /* Removes any padding around the list */
     margin: 0; /* Removes any margin around the list */
 }
 
+/* Style for the navigation links */
 nav ul li {
-    display: block; /* Each link on a new line */
-    margin-bottom: 15px; /* Adds space between the links */
+    display: inline; /* Makes the list items appear in a horizontal row */
+    margin-right: 20px; /* Adds space between the list items */
 }
 
 nav ul li a {
@@ -70,18 +74,11 @@ nav ul li a {
     transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
 
+/* Neon glow effect on hover */
 nav ul li a:hover {
     color: #D9A2FF; /* Slightly lighter purple on hover */
     opacity: 1;
     text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF; /* Neon glow effect */
-}
-
-/* Main content area */
-main {
-    flex: 1; /* Make the main content take up the remaining space */
-    padding-left: 220px; /* Add space to the left for the fixed navigation */
-    text-align: center;
-    color: #C7A1FF;
 }
 
 /* Hero section */
@@ -106,6 +103,15 @@ main {
 .cta-button:hover {
     background-color: #B08DFF; /* Slightly darker purple for hover effect */
     color: white;
+}
+
+/* Main content area */
+main {
+    flex: 1; /* Make the main content take up the remaining space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 /* Section headings */
