@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none; /* Remove underline from all elements globally */
 }
 
 /* Set up the basic body and font */
