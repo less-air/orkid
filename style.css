@@ -20,7 +20,17 @@ body {
     transition: color 0.3s ease; /* Smooth color transition for text */
 }
 
-/* Glitchy effect background */
+/* Apply metallic shine to all text elements */
+* {
+    text-transform: uppercase; /* Optional: capitalizes text */
+    font-weight: bold; /* Optional: makes the font bolder */
+    background: linear-gradient(45deg, #d4af37, #a6a6a6, #c0c0c0); /* Metallic gradient */
+    -webkit-background-clip: text; /* Clips background gradient to text */
+    color: transparent; /* Makes text transparent to show the gradient */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8); /* Adds shine */
+}
+
+/* Glitchy effect background - Raindrop style */
 body::before {
     content: '';
     position: absolute;
@@ -28,54 +38,55 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to bottom, transparent 25%, #C7A1FF 25%, #C7A1FF 50%, transparent 50%, transparent 75%, #C7A1FF 75%, #C7A1FF 100%);
-    background-size: 100% 10px; /* Horizontal lines */
+    background-image: linear-gradient(to right, transparent 20%, #C7A1FF 20%, #C7A1FF 40%, transparent 40%, transparent 60%, #C7A1FF 60%, #C7A1FF 80%, transparent 80%);
+    background-size: 100% 20px; /* Vertical lines */
     opacity: 0;
-    animation: glitch 30s infinite;
+    animation: glitch 30s infinite linear;
     pointer-events: none; /* So the background doesn't interfere with user interaction */
 }
 
-/* Keyframes for random glitchy effect */
+/* Keyframes for raindrop-like glitch effect */
 @keyframes glitch {
     0% {
         opacity: 0;
-        transform: translateX(0);
-        color: #C7A1FF; /* Restore text color to original */
+        transform: translateY(0); /* No vertical movement initially */
+        color: #C7A1FF;
     }
     10% {
         opacity: 1;
-        transform: translateX(-5px) skew(2deg);
-        color: black; /* Change text color to black during glitch */
+        transform: translateY(-5px); /* Move raindrop upwards */
+        color: #C7A1FF;
     }
     15% {
-        opacity: 0;
-        transform: translateX(5px) skew(-2deg);
+        opacity: 0.3;
+        transform: translateY(10px); /* Falling raindrop effect */
     }
     20% {
-        opacity: 1;
-        transform: translateX(-4px) skew(3deg);
+        opacity: 0.8;
+        transform: translateY(-5px); /* Slight upward movement */
+        color: #C7A1FF;
     }
     25% {
-        opacity: 0;
-        transform: translateX(4px) skew(-3deg);
+        opacity: 0.5;
+        transform: translateY(8px); /* Raindrop falling */
     }
     50% {
         opacity: 1;
-        transform: translateX(-6px) skew(5deg);
-        color: black; /* Change text color to black during glitch */
+        transform: translateY(-7px); /* Slight upward movement */
+        color: #C7A1FF;
     }
     60% {
-        opacity: 0;
-        transform: translateX(6px) skew(-5deg);
+        opacity: 0.4;
+        transform: translateY(12px); /* More noticeable fall */
     }
     70% {
-        opacity: 1;
-        transform: translateX(-3px) skew(4deg);
+        opacity: 0.8;
+        transform: translateY(-5px); /* Slight upward movement */
     }
     100% {
         opacity: 0;
-        transform: translateX(0);
-        color: #C7A1FF; /* Restore text color to original */
+        transform: translateY(0); /* End with no movement */
+        color: #C7A1FF;
     }
 }
 
@@ -107,6 +118,10 @@ nav ul li a {
     text-decoration: none; /* Remove underline */
     font-weight: bold;
     transition: all 0.3s ease; /* Smooth transition for hover effect */
+    background: linear-gradient(45deg, #d4af37, #a6a6a6, #c0c0c0); /* Metallic gradient */
+    -webkit-background-clip: text; /* Clips background gradient to text */
+    color: transparent; /* Makes text transparent to show the gradient */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8); /* Adds shine */
 }
 
 /* Neon glow effect on hover */
@@ -124,6 +139,7 @@ nav ul li a:hover {
     margin-bottom: 40px;
 }
 
+/* Call-to-action button */
 .cta-button {
     background-color: #C7A1FF;
     color: black;
