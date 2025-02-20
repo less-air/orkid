@@ -29,7 +29,7 @@ body::before {
     width: 100%;
     height: 100%;
     background-image: linear-gradient(to bottom, transparent 25%, #C7A1FF 25%, #C7A1FF 50%, transparent 50%, transparent 75%, #C7A1FF 75%, #C7A1FF 100%);
-    background-size: 100% 10px; /* Horizontal lines */
+    background-size: 100% 40px; /* Increase vertical spacing between lines */
     opacity: 0.1; /* More subtle opacity */
     animation: glitch 30s infinite;
     pointer-events: none; /* So the background doesn't interfere with user interaction */
