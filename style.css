@@ -31,7 +31,7 @@ header {
     text-align: center;
     border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
     z-index: 10; /* Ensure header stays on top */
-    opacity: 0.25; /* Adjust this to change the opacity of the background pattern */
+    opacity: 1; /* Adjust this to change the opacity of the background pattern */
 }
 
 /* Header text (h1) styling */
@@ -76,6 +76,7 @@ nav ul li a {
 /* Neon glow effect on hover */
 nav ul li a:hover {
     color: #D9A2FF; /* Slightly lighter purple on hover */
+    opacity: 1;
     text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF; /* Neon glow effect */
 }
 
