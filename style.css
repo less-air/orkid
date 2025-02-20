@@ -20,7 +20,7 @@ body {
     transition: color 0.3s ease; /* Smooth color transition for text */
 }
 
-/* Glitchy effect background */
+/* Raindrop-like effect background */
 body::before {
     content: '';
     position: absolute;
@@ -28,54 +28,20 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to bottom, transparent 25%, #C7A1FF 25%, #C7A1FF 50%, transparent 50%, transparent 75%, #C7A1FF 75%, #C7A1FF 100%);
-    background-size: 100% 10px; /* Horizontal lines */
-    opacity: 0;
-    animation: glitch 30s infinite;
+    background: linear-gradient(to bottom, transparent 50%, #C7A1FF 50%, transparent 100%);
+    background-size: 5px 100%; /* Thin vertical lines */
+    opacity: 0.1;
+    animation: rain 2s infinite linear;
     pointer-events: none; /* So the background doesn't interfere with user interaction */
 }
 
-/* Keyframes for random glitchy effect */
-@keyframes glitch {
+/* Keyframes for raindrop effect */
+@keyframes rain {
     0% {
-        opacity: 0;
-        transform: translateX(0);
-        color: #C7A1FF; /* Restore text color to original */
-    }
-    10% {
-        opacity: 1;
-        transform: translateX(-5px) skew(2deg);
-        color: black; /* Change text color to black during glitch */
-    }
-    15% {
-        opacity: 0;
-        transform: translateX(5px) skew(-2deg);
-    }
-    20% {
-        opacity: 1;
-        transform: translateX(-4px) skew(3deg);
-    }
-    25% {
-        opacity: 0;
-        transform: translateX(4px) skew(-3deg);
-    }
-    50% {
-        opacity: 1;
-        transform: translateX(-6px) skew(5deg);
-        color: black; /* Change text color to black during glitch */
-    }
-    60% {
-        opacity: 0;
-        transform: translateX(6px) skew(-5deg);
-    }
-    70% {
-        opacity: 1;
-        transform: translateX(-3px) skew(4deg);
+        background-position: 0% 0%; /* Start with lines at the top */
     }
     100% {
-        opacity: 0;
-        transform: translateX(0);
-        color: #C7A1FF; /* Restore text color to original */
+        background-position: 0% 100%; /* Move lines to the bottom */
     }
 }
 
