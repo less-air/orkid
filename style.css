@@ -93,11 +93,11 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Make the Sketchfab embed responsive with 16:9 aspect ratio */
+/* Make the Sketchfab embed responsive with 16:9 aspect ratio and bigger */
 .sketchfab-embed-wrapper {
     position: relative;
     width: 100%; /* Full width */
-    padding-top: 56.25%; /* 16:9 Aspect Ratio (9 / 16 * 100 = 56.25%) */
+    padding-top: 35%; /* Decrease this value to make the model bigger (it keeps 16:9 ratio) */
     overflow: hidden;
     max-width: 100%;
 }
