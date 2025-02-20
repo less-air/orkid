@@ -30,7 +30,7 @@ body {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8); /* Adds shine */
 }
 
-/* Glitchy effect background - Raindrop style */
+/* Glitchy effect background */
 body::before {
     content: '';
     position: absolute;
@@ -38,55 +38,54 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(to right, transparent 20%, #C7A1FF 20%, #C7A1FF 40%, transparent 40%, transparent 60%, #C7A1FF 60%, #C7A1FF 80%, transparent 80%);
-    background-size: 100% 20px; /* Vertical lines */
+    background-image: linear-gradient(to bottom, transparent 25%, #C7A1FF 25%, #C7A1FF 50%, transparent 50%, transparent 75%, #C7A1FF 75%, #C7A1FF 100%);
+    background-size: 100% 10px; /* Horizontal lines */
     opacity: 0;
-    animation: glitch 30s infinite linear;
+    animation: glitch 30s infinite;
     pointer-events: none; /* So the background doesn't interfere with user interaction */
 }
 
-/* Keyframes for raindrop-like glitch effect */
+/* Keyframes for random glitchy effect */
 @keyframes glitch {
     0% {
         opacity: 0;
-        transform: translateY(0); /* No vertical movement initially */
-        color: #C7A1FF;
+        transform: translateX(0);
+        color: #C7A1FF; /* Restore text color to original */
     }
     10% {
         opacity: 1;
-        transform: translateY(-5px); /* Move raindrop upwards */
-        color: #C7A1FF;
+        transform: translateX(-5px) skew(2deg);
+        color: black; /* Change text color to black during glitch */
     }
     15% {
-        opacity: 0.3;
-        transform: translateY(10px); /* Falling raindrop effect */
+        opacity: 0;
+        transform: translateX(5px) skew(-2deg);
     }
     20% {
-        opacity: 0.8;
-        transform: translateY(-5px); /* Slight upward movement */
-        color: #C7A1FF;
+        opacity: 1;
+        transform: translateX(-4px) skew(3deg);
     }
     25% {
-        opacity: 0.5;
-        transform: translateY(8px); /* Raindrop falling */
+        opacity: 0;
+        transform: translateX(4px) skew(-3deg);
     }
     50% {
         opacity: 1;
-        transform: translateY(-7px); /* Slight upward movement */
-        color: #C7A1FF;
+        transform: translateX(-6px) skew(5deg);
+        color: black; /* Change text color to black during glitch */
     }
     60% {
-        opacity: 0.4;
-        transform: translateY(12px); /* More noticeable fall */
+        opacity: 0;
+        transform: translateX(6px) skew(-5deg);
     }
     70% {
-        opacity: 0.8;
-        transform: translateY(-5px); /* Slight upward movement */
+        opacity: 1;
+        transform: translateX(-3px) skew(4deg);
     }
     100% {
         opacity: 0;
-        transform: translateY(0); /* End with no movement */
-        color: #C7A1FF;
+        transform: translateX(0);
+        color: #C7A1FF; /* Restore text color to original */
     }
 }
 
