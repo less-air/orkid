@@ -20,16 +20,6 @@ body {
     transition: color 0.3s ease; /* Smooth color transition for text */
 }
 
-/* Apply metallic shine to all text elements */
-* {
-    text-transform: uppercase; /* Optional: capitalizes text */
-    font-weight: bold; /* Optional: makes the font bolder */
-    background: linear-gradient(45deg, #d4af37, #a6a6a6, #c0c0c0); /* Metallic gradient */
-    -webkit-background-clip: text; /* Clips background gradient to text */
-    color: transparent; /* Makes text transparent to show the gradient */
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8); /* Adds shine */
-}
-
 /* Glitchy effect background */
 body::before {
     content: '';
@@ -117,10 +107,6 @@ nav ul li a {
     text-decoration: none; /* Remove underline */
     font-weight: bold;
     transition: all 0.3s ease; /* Smooth transition for hover effect */
-    background: linear-gradient(45deg, #d4af37, #a6a6a6, #c0c0c0); /* Metallic gradient */
-    -webkit-background-clip: text; /* Clips background gradient to text */
-    color: transparent; /* Makes text transparent to show the gradient */
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.8), 0 0 5px rgba(255, 255, 255, 0.8); /* Adds shine */
 }
 
 /* Neon glow effect on hover */
@@ -138,7 +124,6 @@ nav ul li a:hover {
     margin-bottom: 40px;
 }
 
-/* Call-to-action button */
 .cta-button {
     background-color: #C7A1FF;
     color: black;
