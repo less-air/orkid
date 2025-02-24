@@ -70,3 +70,31 @@ audioElement.onplay = function() {
     renderFrame();
   });
 };
+
+// Drag and drop functionality
+canvas.addEventListener('dragover', function(e) {
+  e.preventDefault(); // Prevent the default behavior (prevent file opening)
+  canvas.style.border = '2px dashed purple'; // Show a border to indicate drop area
+});
+
+canvas.addEventListener('dragleave', function(e) {
+  canvas.style.border = 'none'; // Remove the border when the file is dragged out
+});
+
+canvas.addEventListener('drop', function(e) {
+  e.preventDefault(); // Prevent default behavior
+
+  // Remove the border once the file is dropped
+  canvas.style.border = 'none';
+
+  // Get the dropped file (the first file only)
+  const file = e.dataTransfer.files[0];
+
+  if (file && file.type.startsWith('audio/')) {
+    const fileURL = URL.createObjectURL(file);
+    audioElement.src = fileURL; // Set the audio element's source to the dropped file
+    audioElement.play(); // Automatically play the audio when the file is dropped
+  } else {
+    alert('Please drop a valid audio file!');
+  }
+});
