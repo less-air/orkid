@@ -16,9 +16,8 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column; /* Stack the sections (header, main content, footer) vertically */
-    justify-content: center; /* Center content vertically */
+    justify-content: flex-start; /* Align items from the top */
     align-items: center; /* Center content horizontally */
-    height: 100vh; /* Full viewport height */
     position: relative;
     transition: color 0.3s ease; /* Smooth color transition for text */
     text-align: center; /* Center all text by default */
@@ -27,11 +26,13 @@ body {
 /* Floral pattern for the header */
 header {
     color: #C7A1FF; /* Set the text color to match */
-    padding: 20px;
+    padding: 30px 20px; /* Increased padding to give more space */
     text-align: center;
     border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
     z-index: 10; /* Ensure header stays on top */
     opacity: 1; /* Adjust this to change the opacity of the background pattern */
+    width: 100%; /* Ensure header takes full width */
+    position: relative; /* Keeps the header in place at the top */
 }
 
 /* Header text (h1) styling */
@@ -113,6 +114,7 @@ main {
     align-items: center;
     text-align: center;
     width: 100%; /* Ensure full width */
+    margin-top: 20px; /* Add margin for some space from the header */
 }
 
 /* Section headings */
@@ -154,7 +156,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Ensure stacking the header, visualizer, and footer vertically */
-    height: 100vh;
     margin: 0;
 }
 
@@ -187,27 +188,19 @@ audio {
     box-shadow: 0 0 10px rgba(199, 161, 255, 0.6); /* Add a soft glow around the audio player */
 }
 
-main p {
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 /* Ensuring that the main element and section are set to flex to center their contents */
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
+main p {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /* Ensuring the visualizer section is also using flexbox */
 #visualizer-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
