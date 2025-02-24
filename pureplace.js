@@ -71,20 +71,25 @@ audioElement.onplay = function() {
 };
 
 // Drag and drop functionality
-canvas.addEventListener('dragover', function(e) {
+const dropArea = document.getElementById('drop-area');
+
+// Prevent default dragover behavior and show a border effect
+dropArea.addEventListener('dragover', function(e) {
   e.preventDefault(); // Prevent the default behavior (prevent file opening)
-  canvas.style.border = '2px dashed purple'; // Show a border to indicate drop area
+  dropArea.style.border = '2px dashed purple'; // Show a border to indicate drop area
 });
 
-canvas.addEventListener('dragleave', function(e) {
-  canvas.style.border = 'none'; // Remove the border when the file is dragged out
+// Remove the border when the file is dragged out of the drop area
+dropArea.addEventListener('dragleave', function(e) {
+  dropArea.style.border = '2px dashed #C7A1FF'; // Reset the border color
 });
 
-canvas.addEventListener('drop', function(e) {
+// Handle the file drop and update the audio element source
+dropArea.addEventListener('drop', function(e) {
   e.preventDefault(); // Prevent default behavior
 
-  // Remove the border once the file is dropped
-  canvas.style.border = 'none';
+  // Reset the border style once the file is dropped
+  dropArea.style.border = '2px dashed #C7A1FF';
 
   // Get the dropped file (the first file only)
   const file = e.dataTransfer.files[0];
