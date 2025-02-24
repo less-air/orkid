@@ -43,6 +43,10 @@ function renderFrame() {
   let barHeight;
   let x = 0;
 
+  // Set shadow blur and color for the "plant-like" circles
+  ctx.shadowBlur = 15; // Add blur
+  ctx.shadowColor = "rgba(199, 161, 255, 0.6)"; // Light purple shadow for glowing effect
+
   // Draw purple plant-like shapes (e.g., circles) based on frequency data
   for (let i = 0; i < bufferLength; i++) {
     barHeight = dataArray[i];
@@ -51,9 +55,12 @@ function renderFrame() {
     const purple = Math.min(255, barHeight + 50);
     const plantColor = `rgb(${purple}, ${Math.floor(purple / 2)}, ${Math.floor(purple / 3)})`; // Purple tones
 
+    // Flip the frequency to make low frequencies at the bottom and high at the top
+    const yPos = canvas.height - (i / bufferLength) * canvas.height; // Flip the y-axis
+
     // Draw a circular shape that expands and shrinks based on the frequency
     ctx.beginPath();
-    ctx.arc(x + (canvas.width / bufferLength) / 2, canvas.height - barHeight - 20, barHeight / 4, 0, 2 * Math.PI);
+    ctx.arc(x + (canvas.width / bufferLength) / 2, yPos, barHeight / 4, 0, 2 * Math.PI);
     ctx.fillStyle = plantColor;
     ctx.fill();
 
