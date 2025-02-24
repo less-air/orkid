@@ -39,27 +39,31 @@ function renderFrame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Visualizer settings
-  const xPos = canvas.width / 2; // All circles will be at the center (same x value)
-  let barHeight;
-
-  // Set shadow blur and color for the "plant-like" circles
-  ctx.shadowBlur = 15; // Add blur
+  const purpleShades = ['#C7A1FF', '#D9A2FF', '#B08DFF', '#A56EFF']; // Different shades of purple
+  const maxSize = 40; // Maximum size of blobs
+  
+  // Set shadow blur and color for the "plant-like" blobs
+  ctx.shadowBlur = 20; // Add blur
   ctx.shadowColor = "rgba(199, 161, 255, 0.6)"; // Light purple shadow for glowing effect
 
-  // Set a fixed purple color for all circles
-  const purple = '#C7A1FF'; // The color you want for all the circles
-
-  // Draw purple plant-like circles at the same x position (centered vertically)
+  // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
-    barHeight = dataArray[i];
+    let barHeight = dataArray[i];
 
-    // Flip the frequency to make low frequencies at the bottom and high at the top
-    const yPos = canvas.height - (i / bufferLength) * canvas.height; // Flip the y-axis
+    // Random X and Y positions for scattered effect
+    const xPos = Math.random() * canvas.width;
+    const yPos = Math.random() * canvas.height;
 
-    // Draw a circular shape that expands and shrinks based on the frequency
+    // Set the size of each "blob" based on the frequency data
+    const size = barHeight / 4 + Math.random() * maxSize; // Adjust the range for more dynamic sizes
+
+    // Randomly pick a purple shade for each blob
+    const randomPurple = purpleShades[Math.floor(Math.random() * purpleShades.length)];
+
+    // Draw an organic, blob-like shape
     ctx.beginPath();
-    ctx.arc(xPos, yPos, barHeight / 4, 0, 2 * Math.PI); // All circles at the same xPos (center)
-    ctx.fillStyle = purple; // Use the purple color for all circles
+    ctx.ellipse(xPos, yPos, size, size / 1.5, Math.random() * Math.PI, 0, Math.PI * 2); // Elliptical shapes for more organic feel
+    ctx.fillStyle = randomPurple; // Use a random shade of purple
     ctx.fill();
   }
 }
