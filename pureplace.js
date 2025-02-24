@@ -35,9 +35,22 @@ source.connect(timeDomainAnalyser);
 analyser.connect(audioContext.destination);
 timeDomainAnalyser.connect(audioContext.destination);
 
+// Frame delay interval (how often we update the blobs)
+const frameDelay = 5; // Every 5 frames (you can increase this value to update less frequently)
+let frameCounter = 0;
+
 // Visualizer function
 function renderFrame() {
-  requestAnimationFrame(renderFrame);
+  frameCounter++;
+
+  // Only update the blobs every `frameDelay` frames
+  if (frameCounter < frameDelay) {
+    requestAnimationFrame(renderFrame); // Skip this frame
+    return;
+  }
+
+  // Reset frame counter to start the cycle again
+  frameCounter = 0;
 
   // Get frequency and time-domain data
   analyser.getByteFrequencyData(frequencyData);
@@ -86,6 +99,9 @@ function renderFrame() {
     ctx.globalAlpha = opacity; // Set the opacity for each blob based on loudness
     ctx.fill();
   }
+
+  // Request the next frame to continue the animation
+  requestAnimationFrame(renderFrame);
 }
 
 // Start the visualizer once the audio is playing
