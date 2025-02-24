@@ -70,26 +70,20 @@ audioElement.onplay = function() {
   });
 };
 
-// Drag and drop functionality
-const dropArea = document.getElementById('drop-area');
-
-// Prevent default dragover behavior and show a border effect
-dropArea.addEventListener('dragover', function(e) {
+// Drag and drop functionality for the canvas
+canvas.addEventListener('dragover', function(e) {
   e.preventDefault(); // Prevent the default behavior (prevent file opening)
-  dropArea.style.border = '2px dashed purple'; // Show a border to indicate drop area
+  canvas.classList.add('dragover'); // Add the 'dragover' class to style when a file is being dragged over
 });
 
-// Remove the border when the file is dragged out of the drop area
-dropArea.addEventListener('dragleave', function(e) {
-  dropArea.style.border = '2px dashed #C7A1FF'; // Reset the border color
+canvas.addEventListener('dragleave', function() {
+  canvas.classList.remove('dragover'); // Remove the 'dragover' class when the file is dragged out
 });
 
-// Handle the file drop and update the audio element source
-dropArea.addEventListener('drop', function(e) {
+canvas.addEventListener('drop', function(e) {
   e.preventDefault(); // Prevent default behavior
 
-  // Reset the border style once the file is dropped
-  dropArea.style.border = '2px dashed #C7A1FF';
+  canvas.classList.remove('dragover'); // Reset the 'dragover' class once the file is dropped
 
   // Get the dropped file (the first file only)
   const file = e.dataTransfer.files[0];
