@@ -62,6 +62,9 @@ function renderFrame() {
   const averageLoudness = sum / timeDomainData.length;
   const loudness = (averageLoudness / 128) * 100; // Normalize the loudness to a percentage (0 to 100)
 
+  // Calculate opacity based on loudness (from 0 to 1)
+  const opacity = loudness / 100; // Map loudness (0-100) to opacity (0-1)
+
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
     let barHeight = frequencyData[i];
@@ -80,6 +83,7 @@ function renderFrame() {
     ctx.beginPath();
     ctx.ellipse(xPos, yPos, size, size / 1.5, Math.random() * Math.PI, 0, Math.PI * 2); // Elliptical shapes for more organic feel
     ctx.fillStyle = randomPurple; // Use a random shade of purple
+    ctx.globalAlpha = opacity; // Set the opacity for each blob based on loudness
     ctx.fill();
   }
 }
