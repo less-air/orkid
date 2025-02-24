@@ -1,13 +1,21 @@
 // Get references to the audio and canvas elements
 const audioElement = document.getElementById('audio');
-const canvas = document.getElementById('visualizer');
+const canvas = document.getElementById('pureplace'); // Corrected to match the id in the HTML
 const ctx = canvas.getContext('2d');
 
-// Set up the canvas size
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// Function to resize canvas based on window size
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
 
-// Set up the audio context and analyzer
+// Call resizeCanvas to set the initial canvas size
+resizeCanvas();
+
+// Listen for window resize events to adjust the canvas size dynamically
+window.addEventListener('resize', resizeCanvas);
+
+// Set up the audio context and analyser
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;  // Defines the frequency bins
