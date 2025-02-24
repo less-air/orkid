@@ -1,7 +1,9 @@
 // Get references to the audio and canvas elements
 const audioElement = document.getElementById('audio');
-const canvas = document.getElementById('pureplace'); // Corrected to match the id in the HTML
+const canvas = document.getElementById('pureplace');
 const ctx = canvas.getContext('2d');
+const dropArea = document.getElementById('drop-area');
+const audioSource = document.getElementById('audioSource');
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
@@ -65,3 +67,40 @@ audioElement.onplay = function() {
     renderFrame();
   });
 };
+
+// Function to handle file drop and update the audio source
+function handleFileDrop(event) {
+  event.preventDefault();
+
+  // Get the dropped file
+  const file = event.dataTransfer.files[0];
+
+  // Ensure the dropped file is an audio file
+  if (file && file.type.startsWith('audio')) {
+    const audioUrl = URL.createObjectURL(file);
+    audioSource.src = audioUrl;
+    audioElement.load(); // Reload the audio element with the new source
+    audioElement.play(); // Play the new audio
+
+    // Restart the visualizer
+    audioContext.resume().then(() => {
+      renderFrame();
+    });
+  } else {
+    alert('Please drop a valid audio file!');
+  }
+}
+
+// Prevent the default behavior when dragging over the drop area
+dropArea.addEventListener('dragover', (event) => {
+  event.preventDefault();
+  dropArea.style.backgroundColor = '#333'; // Change background color when over
+});
+
+// Revert the drop area background after the drag
+dropArea.addEventListener('dragleave', () => {
+  dropArea.style.backgroundColor = 'transparent';
+});
+
+// Handle the drop event
+dropArea.addEventListener('drop', handleFileDrop);
