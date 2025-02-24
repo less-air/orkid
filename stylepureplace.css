@@ -204,3 +204,25 @@ main p {
     width: 100%;
     height: 100%;
 }
+
+/* Styling for the drop text */
+#drop-text {
+    font-size: 1.5rem;
+    color: #C7A1FF;
+    font-weight: bold;
+    transition: opacity 0.3s ease; /* Smooth fade effect */
+    position: absolute;
+    z-index: 5;
+}
+
+/* Ensure the drop text is centered in the canvas area */
+#pureplace {
+    position: relative;
+}
+
+#drop-text {
+    top: 50%; /* Vertically center the text */
+    left: 50%; /* Horizontally center the text */
+    transform: translate(-50%, -50%); /* Adjust to truly center */
+    opacity: 1; /* Initially visible */
+}
