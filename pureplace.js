@@ -7,8 +7,8 @@ const audioSource = document.getElementById('audioSource');
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth * 0.8; // 80% of the screen width
+  canvas.height = window.innerHeight * 0.8; // 80% of the screen height
 }
 
 // Call resizeCanvas to set the initial canvas size
@@ -40,24 +40,24 @@ function renderFrame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Visualizer settings
-  const barWidth = canvas.width / bufferLength;
   let barHeight;
   let x = 0;
 
-  // Draw the frequency bars
+  // Draw purple plant-like shapes (e.g., circles) based on frequency data
   for (let i = 0; i < bufferLength; i++) {
     barHeight = dataArray[i];
 
     // Set color based on the frequency value
-    const r = barHeight + 25 * (i / bufferLength);
-    const g = 250 * (i / bufferLength);
-    const b = 50;
+    const purple = Math.min(255, barHeight + 50);
+    const plantColor = `rgb(${purple}, ${Math.floor(purple / 2)}, ${Math.floor(purple / 3)})`; // Purple tones
 
-    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    // Draw a circular shape that expands and shrinks based on the frequency
+    ctx.beginPath();
+    ctx.arc(x + (canvas.width / bufferLength) / 2, canvas.height - barHeight - 20, barHeight / 4, 0, 2 * Math.PI);
+    ctx.fillStyle = plantColor;
+    ctx.fill();
 
-    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-    x += barWidth + 1;
+    x += canvas.width / bufferLength;
   }
 }
 
