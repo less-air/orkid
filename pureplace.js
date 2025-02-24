@@ -1,13 +1,21 @@
 // Get references to the audio and canvas elements
 const audioElement = document.getElementById('audio');
-const canvas = document.getElementById('visualizer');
+const canvas = document.getElementById('pureplace');
 const ctx = canvas.getContext('2d');
 
-// Set up the canvas size
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// Function to resize canvas based on window size
+function resizeCanvas() {
+  canvas.width = window.innerWidth * 0.8; // 80% of the screen width
+  canvas.height = window.innerHeight * 0.8; // 80% of the screen height
+}
 
-// Set up the audio context and analyzer
+// Call resizeCanvas to set the initial canvas size
+resizeCanvas();
+
+// Listen for window resize events to adjust the canvas size dynamically
+window.addEventListener('resize', resizeCanvas);
+
+// Set up the audio context and analyser
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;  // Defines the frequency bins
@@ -30,24 +38,28 @@ function renderFrame() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // Visualizer settings
-  const barWidth = canvas.width / bufferLength;
+  const xPos = canvas.width / 2; // All circles will be at the center (same x value)
   let barHeight;
-  let x = 0;
 
-  // Draw the frequency bars
+  // Set shadow blur and color for the "plant-like" circles
+  ctx.shadowBlur = 15; // Add blur
+  ctx.shadowColor = "rgba(199, 161, 255, 0.6)"; // Light purple shadow for glowing effect
+
+  // Set a fixed purple color for all circles
+  const purple = '#C7A1FF'; // The color you want for all the circles
+
+  // Draw purple plant-like circles at the same x position (centered vertically)
   for (let i = 0; i < bufferLength; i++) {
     barHeight = dataArray[i];
 
-    // Set color based on the frequency value
-    const r = barHeight + 25 * (i / bufferLength);
-    const g = 250 * (i / bufferLength);
-    const b = 50;
+    // Flip the frequency to make low frequencies at the bottom and high at the top
+    const yPos = canvas.height - (i / bufferLength) * canvas.height; // Flip the y-axis
 
-    ctx.fillStyle = `rgb(${r},${g},${b})`;
-
-    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-    x += barWidth + 1;
+    // Draw a circular shape that expands and shrinks based on the frequency
+    ctx.beginPath();
+    ctx.arc(xPos, yPos, barHeight / 4, 0, 2 * Math.PI); // All circles at the same xPos (center)
+    ctx.fillStyle = purple; // Use the purple color for all circles
+    ctx.fill();
   }
 }
 
@@ -57,3 +69,36 @@ audioElement.onplay = function() {
     renderFrame();
   });
 };
+
+// Drag and drop functionality
+const dropArea = document.getElementById('drop-area');
+
+// Prevent default dragover behavior and show a border effect
+dropArea.addEventListener('dragover', function(e) {
+  e.preventDefault(); // Prevent the default behavior (prevent file opening)
+  dropArea.style.border = '2px dashed purple'; // Show a border to indicate drop area
+});
+
+// Remove the border when the file is dragged out of the drop area
+dropArea.addEventListener('dragleave', function(e) {
+  dropArea.style.border = '2px dashed #C7A1FF'; // Reset the border color
+});
+
+// Handle the file drop and update the audio element source
+dropArea.addEventListener('drop', function(e) {
+  e.preventDefault(); // Prevent default behavior
+
+  // Reset the border style once the file is dropped
+  dropArea.style.border = '2px dashed #C7A1FF';
+
+  // Get the dropped file (the first file only)
+  const file = e.dataTransfer.files[0];
+
+  if (file && file.type.startsWith('audio/')) {
+    const fileURL = URL.createObjectURL(file);
+    audioElement.src = fileURL; // Set the audio element's source to the dropped file
+    audioElement.play(); // Automatically play the audio when the file is dropped
+  } else {
+    alert('Please drop a valid audio file!');
+  }
+});

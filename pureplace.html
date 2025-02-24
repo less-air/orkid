@@ -3,27 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Audio Visualizer</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: black;
-    }
-    canvas {
-      border: 1px solid white;
-    }
-  </style>
+  <title>Pure Place - ORKID</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="visualizer"></canvas>
-  <audio id="audio" controls>
-    <source src="your-audio-file.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-  <script src="visualizer.js"></script>
+  <header>
+    <h1>庭</h1>
+  </header>
+
+  <main>
+    <section id="visualizer-section" class="hero">
+      <!-- The canvas element where the visualizer will be rendered -->
+      <canvas id="pureplace"></canvas>
+
+      <!-- Audio player -->
+      <audio id="audio" controls>
+        <source id="audioSource" src="your-audio-file.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+      </audio>
+      
+      <!-- Area to indicate the drop zone for the audio file -->
+      <div id="drop-area">
+        <p>Plant your audio seed here</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ORKID. All rights reserved.</p>
+  </footer>
+
+  <script src="pureplace.js"></script>
 </body>
 </html>
