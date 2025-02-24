@@ -62,6 +62,16 @@ function renderFrame() {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // If a file has been dropped, set the background to black (transparent) after the drop
+  if (fileDropped) {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0)'; // Transparent background (black)
+    ctx.fillRect(0, 0, canvas.width, canvas.height); // Apply the transparent fill
+  } else {
+    // If no file is dropped, we can keep the regular behavior for background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Light black or semi-transparent background
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
   // Visualizer settings
   const purpleShades = ['#C7A1FF', '#D9A2FF', '#B08DFF', '#A56EFF']; // Different shades of purple
   const maxSize = 40; // Maximum size of blobs
@@ -69,12 +79,6 @@ function renderFrame() {
   // Set shadow blur and color for the "plant-like" blobs
   ctx.shadowBlur = 20; // Add blur
   ctx.shadowColor = "rgba(199, 161, 255, 0.6)"; // Light purple shadow for glowing effect
-
-  // If a file has been dropped, remove the glow effect on the canvas
-  if (fileDropped) {
-    ctx.shadowBlur = 0; // Remove shadow blur
-    ctx.shadowColor = 'rgba(0,0,0,0)'; // Remove shadow color
-  }
 
   // Calculate loudness from time-domain data
   let sum = 0;
