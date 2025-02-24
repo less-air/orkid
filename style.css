@@ -19,6 +19,7 @@ body {
     height: 100vh; /* Full viewport height */
     position: relative;
     transition: color 0.3s ease; /* Smooth color transition for text */
+    justify-content: flex-start; /* Ensure content starts from the top */
 }
 
 /* Floral pattern for the header */
@@ -29,6 +30,8 @@ header {
     border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
     z-index: 10; /* Ensure header stays on top */
     opacity: 1; /* Adjust this to change the opacity of the background pattern */
+    width: 100%; /* Ensure header takes full width */
+    position: relative; /* Keeps the header in place at the top */
 }
 
 /* Header text (h1) styling */
@@ -185,4 +188,5 @@ audio {
 }
 
 audio::-webkit-media-controls-panel {
-    background-color: #C7A1FF; /* Set the audio
+    background-color: #C7A1FF; /* Set the audio */
+}
