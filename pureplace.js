@@ -46,8 +46,7 @@ function renderFrame() {
   ctx.shadowColor = "rgba(199, 161, 255, 0.6)"; // Light purple shadow for glowing effect
 
   // Set a fixed purple color for all circles
-  const purple = 199;
-  const plantColor = `rgb(${purple}, ${Math.floor(purple / 2)}, ${Math.floor(purple / 3)})`; // Purple tone
+  const purple = '#C7A1FF'; // The color you want for all the circles
 
   // Draw purple plant-like circles at the same x position (centered vertically)
   for (let i = 0; i < bufferLength; i++) {
@@ -59,7 +58,7 @@ function renderFrame() {
     // Draw a circular shape that expands and shrinks based on the frequency
     ctx.beginPath();
     ctx.arc(xPos, yPos, barHeight / 4, 0, 2 * Math.PI); // All circles at the same xPos (center)
-    ctx.fillStyle = plantColor;
+    ctx.fillStyle = purple; // Use the purple color for all circles
     ctx.fill();
   }
 }
