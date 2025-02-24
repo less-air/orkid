@@ -36,7 +36,7 @@ analyser.connect(audioContext.destination);
 timeDomainAnalyser.connect(audioContext.destination);
 
 // Frame delay interval (how often we update the blobs)
-const frameDelay = 5; // Every 5 frames (you can increase this value to update less frequently)
+const frameDelay = 1; // Every 5 frames (you can increase this value to update less frequently)
 let frameCounter = 0;
 
 // Visualizer function
@@ -78,6 +78,13 @@ function renderFrame() {
   // Calculate opacity based on loudness (from 0 to 1)
   const opacity = loudness / 100; // Map loudness (0-100) to opacity (0-1)
 
+  // Get the mouse position (to center the circle of opacity)
+  const mouseX = canvas.mouseX || 0;
+  const mouseY = canvas.mouseY || 0;
+
+  // Set the radius of the circle that will control the opacity
+  const radius = 150; // Change this value to control the size of the "glowing" area
+
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
     let barHeight = frequencyData[i];
@@ -92,11 +99,21 @@ function renderFrame() {
     // Randomly pick a purple shade for each blob
     const randomPurple = purpleShades[Math.floor(Math.random() * purpleShades.length)];
 
+    // Calculate the distance from the current blob position to the cursor
+    const dist = Math.sqrt(Math.pow(mouseX - xPos, 2) + Math.pow(mouseY - yPos, 2));
+
+    // Adjust the opacity of the blob based on the distance from the cursor
+    let blobOpacity = 0;
+    if (dist < radius) {
+      // If the blob is within the radius, adjust opacity based on proximity
+      blobOpacity = opacity * (1 - dist / radius);
+    }
+
     // Draw an organic, blob-like shape
     ctx.beginPath();
     ctx.ellipse(xPos, yPos, size, size / 1.5, Math.random() * Math.PI, 0, Math.PI * 2); // Elliptical shapes for more organic feel
     ctx.fillStyle = randomPurple; // Use a random shade of purple
-    ctx.globalAlpha = opacity; // Set the opacity for each blob based on loudness
+    ctx.globalAlpha = blobOpacity; // Set the opacity for each blob based on proximity to the cursor
     ctx.fill();
   }
 
@@ -139,4 +156,10 @@ canvas.addEventListener('drop', function(e) {
   } else {
     alert('Please drop a valid audio file!');
   }
+});
+
+// Track mouse position to create the cursor-centered opacity effect
+canvas.addEventListener('mousemove', function(e) {
+  canvas.mouseX = e.offsetX; // Set the mouse X position on the canvas
+  canvas.mouseY = e.offsetY; // Set the mouse Y position on the canvas
 });
