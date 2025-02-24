@@ -16,9 +16,12 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column; /* Stack the sections (header, main content, footer) vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
     height: 100vh; /* Full viewport height */
     position: relative;
     transition: color 0.3s ease; /* Smooth color transition for text */
+    text-align: center; /* Center all text by default */
 }
 
 /* Floral pattern for the header */
@@ -53,16 +56,16 @@ header h1:hover {
     cursor: pointer; /* Change cursor to indicate interactivity */
 }
 
-/* Remove bullet points from the navigation menu */
+/* Navigation styling */
 nav ul {
     list-style-type: none; /* Removes the bullets */
-    padding: 0; /* Removes any padding around the list */
-    margin: 0; /* Removes any margin around the list */
+    padding: 0;
+    margin: 0;
+    text-align: center; /* Center the nav items */
 }
 
-/* Style for the navigation links */
 nav ul li {
-    display: inline; /* Makes the list items appear in a horizontal row */
+    display: inline-block; /* Makes the list items appear in a horizontal row */
     margin-right: 20px; /* Adds space between the list items */
 }
 
@@ -81,6 +84,17 @@ nav ul li a:hover {
     text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF; /* Neon glow effect */
 }
 
+/* Main content area */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: center; /* Center the content vertically */
+    flex-direction: column; /* Stack elements vertically */
+    text-align: center; /* Center text in the main content */
+    padding: 20px;
+}
+
 /* Hero section */
 .hero {
     background-color: black; /* Darker black */
@@ -90,6 +104,7 @@ nav ul li a:hover {
     margin-bottom: 40px;
 }
 
+/* Style for the call-to-action button */
 .cta-button {
     background-color: #C7A1FF;
     color: black;
@@ -100,18 +115,10 @@ nav ul li a:hover {
     transition: background-color 0.3s ease;
 }
 
+/* Hero section button hover effect */
 .cta-button:hover {
     background-color: #B08DFF; /* Slightly darker purple for hover effect */
     color: white;
-}
-
-/* Main content area */
-main {
-    flex: 1; /* Make the main content take up the remaining space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
 
 /* Section headings */
@@ -120,17 +127,16 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Set a fixed size of 1280x1280px for the Sketchfab embed */
+/* Sketchfab embed styles */
 .sketchfab-embed-wrapper {
     position: relative;
-    width: 720px; /* Fixed width */
-    height: 720px; /* Fixed height */
-    max-width: 100%; /* Ensure it does not overflow */
+    width: 720px;
+    height: 720px;
+    max-width: 100%;
     overflow: hidden;
-    margin: 0 auto; /* Center the model */
+    margin: 20px auto; /* Center the model and add space */
 }
 
-/* Set the iframe to take full space within the wrapper */
 .sketchfab-embed-wrapper iframe {
     position: absolute;
     top: 0;
@@ -140,7 +146,31 @@ h2 {
     border: none;
 }
 
-/* In case you want to create a pixel-like cursor without an image, you can use a simple CSS effect like this: */
+/* Custom cursor effect */
 body {
     cursor: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2214%22 height=%2214%22 viewBox=%220 0 14 14%22%3E%3Crect width=%2214%22 height=%2214%22 fill=%22%23C7A1FF%22/%3E%3C/svg%3E'), auto;
+}
+
+/* Drop area and audio player styles */
+#drop-area {
+    border: 2px dashed #C7A1FF;
+    padding: 20px;
+    text-align: center;
+    color: #C7A1FF;
+    margin-bottom: 20px;
+    width: 60%;
+    min-width: 300px;
+    background-color: rgba(199, 161, 255, 0.1); /* Light purple background */
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+audio {
+    width: 60%;
+    border: none;
+    outline: none;
+    background-color: #C7A1FF;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(199, 161, 255, 0.6);
 }
