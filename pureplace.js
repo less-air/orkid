@@ -1,7 +1,8 @@
-// Get references to the audio and canvas elements
+// Get references to the audio, canvas, and drop text elements
 const audioElement = document.getElementById('audio');
 const canvas = document.getElementById('pureplace');
 const ctx = canvas.getContext('2d');
+const dropText = document.getElementById('drop-text'); // Get the "Plant your audio seed here" text element
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
@@ -92,6 +93,9 @@ canvas.addEventListener('drop', function(e) {
     const fileURL = URL.createObjectURL(file);
     audioElement.src = fileURL; // Set the audio element's source to the dropped file
     audioElement.play(); // Automatically play the audio when the file is dropped
+
+    // Hide the "Plant your audio seed here" text
+    dropText.style.opacity = '0'; // Fade out the text
   } else {
     alert('Please drop a valid audio file!');
   }
