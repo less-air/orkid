@@ -21,19 +21,27 @@ const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;  // Defines the frequency bins
 const bufferLength = analyser.frequencyBinCount;
-const dataArray = new Uint8Array(bufferLength);
+const frequencyData = new Uint8Array(bufferLength);
 
-// Connect the audio source to the analyser
+// Create a new analyser for time-domain data (loudness)
+const timeDomainAnalyser = audioContext.createAnalyser();
+timeDomainAnalyser.fftSize = 256;  // Defines the size of the time-domain data
+const timeDomainData = new Uint8Array(timeDomainAnalyser.frequencyBinCount);
+
+// Connect the audio source to the analysers
 const source = audioContext.createMediaElementSource(audioElement);
 source.connect(analyser);
+source.connect(timeDomainAnalyser);
 analyser.connect(audioContext.destination);
+timeDomainAnalyser.connect(audioContext.destination);
 
 // Visualizer function
 function renderFrame() {
   requestAnimationFrame(renderFrame);
 
-  // Get frequency data
-  analyser.getByteFrequencyData(dataArray);
+  // Get frequency and time-domain data
+  analyser.getByteFrequencyData(frequencyData);
+  timeDomainAnalyser.getByteTimeDomainData(timeDomainData);
 
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -46,16 +54,24 @@ function renderFrame() {
   ctx.shadowBlur = 20; // Add blur
   ctx.shadowColor = "rgba(199, 161, 255, 0.6)"; // Light purple shadow for glowing effect
 
+  // Calculate loudness from time-domain data
+  let sum = 0;
+  for (let i = 0; i < timeDomainData.length; i++) {
+    sum += timeDomainData[i];
+  }
+  const averageLoudness = sum / timeDomainData.length;
+  const loudness = (averageLoudness / 128) * 100; // Normalize the loudness to a percentage (0 to 100)
+
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
-    let barHeight = dataArray[i];
+    let barHeight = frequencyData[i];
 
     // Random X and Y positions for scattered effect
     const xPos = Math.random() * canvas.width;
     const yPos = Math.random() * canvas.height;
 
-    // Set the size of each "blob" based on the frequency data
-    const size = barHeight / 4 + Math.random() * maxSize; // Adjust the range for more dynamic sizes
+    // Set the size of each "blob" based on both the frequency data and loudness
+    const size = (barHeight / 4 + Math.random() * maxSize) * (loudness / 100); // Scale by loudness
 
     // Randomly pick a purple shade for each blob
     const randomPurple = purpleShades[Math.floor(Math.random() * purpleShades.length)];
