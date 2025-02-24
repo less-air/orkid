@@ -192,3 +192,21 @@ audio {
     padding: 10px;
     box-shadow: 0 0 10px rgba(199, 161, 255, 0.6); /* Add a soft glow around the audio player */
 }
+
+/* Style the drop area (the place where users drag and drop files) */
+#drop-area {
+    border: 2px dashed #C7A1FF;
+    padding: 20px;
+    color: #C7A1FF;
+    margin-bottom: 20px; /* Adds some spacing between the drop area and the canvas */
+    width: 60%; /* Width of the drop area */
+    min-width: 300px;
+    background-color: rgba(199, 161, 255, 0.1); /* Light purple background */
+    border-radius: 10px; /* Rounded corners */
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Ensures the text itself is centered */
+    height: 150px; /* Optional: Adjust the height as needed */
+}
