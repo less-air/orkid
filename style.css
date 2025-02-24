@@ -16,16 +16,14 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column; /* Stack the sections (header, main content, footer) vertically */
-    height: 100vh; /* Full viewport height */
     position: relative;
     transition: color 0.3s ease; /* Smooth color transition for text */
-    justify-content: flex-start; /* Ensure content starts from the top */
 }
 
 /* Floral pattern for the header */
 header {
     color: #C7A1FF; /* Set the text color to match */
-    padding: 20px;
+    padding: 30px 20px; /* Increased padding to give more space */
     text-align: center;
     border-bottom: 2px solid #C7A1FF; /* Add a subtle purple border */
     z-index: 10; /* Ensure header stays on top */
@@ -152,7 +150,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Ensure stacking the header, visualizer, and footer vertically */
-    height: 100vh;
     margin: 0;
 }
 
