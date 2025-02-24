@@ -4,6 +4,9 @@ const canvas = document.getElementById('pureplace');
 const ctx = canvas.getContext('2d');
 const dropText = document.getElementById('drop-text'); // Get the "Plant your audio seed here" text element
 
+let fileDropped = false; // Flag to check if a file has been dropped
+let dropArea = null; // Store the coordinates of the drop area
+
 // Function to resize canvas based on window size
 function resizeCanvas() {
   canvas.width = window.innerWidth * 0.8; // 80% of the screen width
@@ -36,7 +39,7 @@ analyser.connect(audioContext.destination);
 timeDomainAnalyser.connect(audioContext.destination);
 
 // Frame delay interval (how often we update the blobs)
-const frameDelay = 1; // Every 5 frames (you can increase this value to update less frequently)
+const frameDelay = 5; // Every 5 frames (you can increase this value to update less frequently)
 let frameCounter = 0;
 
 // Visualizer function
@@ -66,6 +69,12 @@ function renderFrame() {
   // Set shadow blur and color for the "plant-like" blobs
   ctx.shadowBlur = 20; // Add blur
   ctx.shadowColor = "rgba(199, 161, 255, 0.6)"; // Light purple shadow for glowing effect
+
+  // If a file has been dropped, remove the glow effect on the canvas
+  if (fileDropped) {
+    ctx.shadowBlur = 0; // Remove shadow blur
+    ctx.shadowColor = 'rgba(0,0,0,0)'; // Remove shadow color
+  }
 
   // Calculate loudness from time-domain data
   let sum = 0;
@@ -153,6 +162,9 @@ canvas.addEventListener('drop', function(e) {
 
     // Hide the "Plant your audio seed here" text
     dropText.style.opacity = '0'; // Fade out the text
+
+    // Set the flag to true to indicate that a file has been dropped
+    fileDropped = true;
   } else {
     alert('Please drop a valid audio file!');
   }
