@@ -144,3 +144,60 @@ h2 {
 body {
     cursor: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2214%22 height=%2214%22 viewBox=%220 0 14 14%22%3E%3Crect width=%2214%22 height=%2214%22 fill=%22%23C7A1FF%22/%3E%3C/svg%3E'), auto;
 }
+
+/* New styles for canvas and audio player */
+
+/* Center the visualizer (canvas) on the page */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Ensure stacking the header, visualizer, and footer vertically */
+    height: 100vh;
+    margin: 0;
+}
+
+/* Style for the canvas to make it responsive and styled */
+canvas {
+    border: 1px solid #C7A1FF; /* Border around the canvas */
+    box-shadow: 0 0 20px rgba(199, 161, 255, 0.5); /* Soft purple glow */
+}
+
+/* Style the drop area (the place where users drag and drop files) */
+#drop-area {
+    border: 2px dashed #C7A1FF;
+    padding: 20px;
+    text-align: center;
+    color: #C7A1FF;
+    margin-bottom: 20px; /* Adds some spacing between the drop area and the canvas */
+    width: 60%; /* Width of the drop area */
+    min-width: 300px;
+    background-color: rgba(199, 161, 255, 0.1); /* Light purple background */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Style the audio player to match the purple color */
+audio {
+    width: 60%; /* Adjust the width of the audio player */
+    border: none;
+    outline: none;
+    background-color: #C7A1FF; /* Set the background color of the audio player */
+    border-radius: 10px; /* Rounded corners for the audio player */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(199, 161, 255, 0.6); /* Add a soft glow around the audio player */
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: #C7A1FF; /* Set the audio control panel background color */
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-mute-button {
+    background-color: #C7A1FF; /* Set the background of individual controls to match the purple */
+}
+
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+    color: white; /* Make text (current time, remaining time) white for contrast */
+}
