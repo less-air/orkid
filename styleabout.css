@@ -97,7 +97,16 @@ main {
 /* Section headings */
 h2 {
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Adds space below 'We are orKid' */
+}
+
+/* Add space between 'We are orKid' and 'Art - Music - Clothing' */
+h2 {
+    margin-bottom: 20px; /* Adds space below the 'We are orKid' heading */
+}
+
+p {
+    margin-top: 20px; /* Adds space above 'Art - Music - Clothing' */
 }
 
 /* In case you want to create a pixel-like cursor without an image, you can use a simple CSS effect like this: */
