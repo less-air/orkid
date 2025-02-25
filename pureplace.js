@@ -9,7 +9,7 @@ let dropArea = null; // Store the coordinates of the drop area
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
-  canvas.width = window.innerWidth * 1; // 80% of the screen width
+  canvas.width = window.innerWidth * 1; // 100% of the screen width
   canvas.height = window.innerHeight * 0.8; // 80% of the screen height
 }
 
@@ -97,7 +97,7 @@ function renderFrame() {
 
   // Set the radius of the circle that will control the opacity and size
   // Make the radius of the cursor dynamically change based on loudness
-  const radius = Math.max(50, 200 * (loudness / 100)); // Minimum radius of 50px, grows as loudness increases
+  const radius = Math.max(10, 200 * (loudness / 100)); // Minimum radius of 50px, grows as loudness increases
 
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
@@ -117,7 +117,7 @@ function renderFrame() {
     const dist = Math.sqrt(Math.pow(mouseX - xPos, 2) + Math.pow(mouseY - yPos, 2));
 
     // Adjust the opacity of the blob based on the distance from the cursor
-    let blobOpacity = 0;
+    let blobOpacity = 0.1;
     if (dist < radius) {
       // If the blob is within the radius, adjust opacity based on proximity
       blobOpacity = opacity * (1 - dist / radius);
