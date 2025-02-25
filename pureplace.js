@@ -1,7 +1,28 @@
+// Get references to the audio, canvas, and drop text elements
+const audioElement = document.getElementById('audio');
+const canvas = document.getElementById('pureplace');
+const ctx = canvas.getContext('2d');
+const dropText = document.getElementById('drop-text'); // Get the "Plant your audio seed here" text element
+
+let fileDropped = false; // Flag to check if a file has been dropped
+let dropArea = null; // Store the coordinates of the drop area
+
 // Track positions and velocities of blobs
 let blobs = [];
 
-// Function to generate a new blob with a slight upward velocity (for slow falling)
+// Function to resize canvas based on window size
+function resizeCanvas() {
+  canvas.width = window.innerWidth * 1; // 80% of the screen width
+  canvas.height = window.innerHeight * 0.8; // 80% of the screen height
+}
+
+// Call resizeCanvas to set the initial canvas size
+resizeCanvas();
+
+// Listen for window resize events to adjust the canvas size dynamically
+window.addEventListener('resize', resizeCanvas);
+
+// Function to create a new blob
 function createBlob() {
   return {
     xPos: Math.random() * canvas.width,
@@ -12,21 +33,13 @@ function createBlob() {
 }
 
 // Initialize blobs once, outside of renderFrame
-for (let i = 0; i < bufferLength; i++) {
+for (let i = 0; i < 50; i++) { // Generate some blobs at the start
   blobs.push(createBlob());
 }
 
 // Visualizer function (renderFrame remains mostly unchanged)
 function renderFrame() {
-  frameCounter++;
-
-  if (frameCounter < frameDelay) {
-    requestAnimationFrame(renderFrame); // Skip this frame
-    return;
-  }
-
-  frameCounter = 0;
-
+  // Get frequency and time-domain data
   analyser.getByteFrequencyData(frequencyData);
   timeDomainAnalyser.getByteTimeDomainData(timeDomainData);
 
