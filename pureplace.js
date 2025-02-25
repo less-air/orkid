@@ -6,10 +6,11 @@ const dropText = document.getElementById('drop-text'); // Get the "Plant your au
 
 let fileDropped = false; // Flag to check if a file has been dropped
 let dropArea = null; // Store the coordinates of the drop area
+let isAudioPlaying = false; // Flag to track if audio is playing
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
-  canvas.width = window.innerWidth * 1; // 100% of the screen width
+  canvas.width = window.innerWidth * 1; // 80% of the screen width
   canvas.height = window.innerHeight * 0.8; // 80% of the screen height
 }
 
@@ -62,13 +63,20 @@ function renderFrame() {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  // If audio is paused or stopped, make everything on the canvas invisible (opacity 0)
+  if (!isAudioPlaying) {
+    ctx.globalAlpha = 0; // Set opacity to 0 (fully transparent)
+  } else {
+    ctx.globalAlpha = 1; // Set opacity back to normal (fully visible)
+  }
+
   // If a file has been dropped, set the background to black (transparent) after the drop
   if (fileDropped) {
     ctx.fillStyle = 'rgba(0, 0, 0, 0)'; // Transparent background (black)
     ctx.fillRect(0, 0, canvas.width, canvas.height); // Apply the transparent fill
   } else {
     // If no file is dropped, we can keep the regular behavior for background
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Light black or semi-transparent background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0)'; // Light black or semi-transparent background
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
@@ -97,7 +105,7 @@ function renderFrame() {
 
   // Set the radius of the circle that will control the opacity and size
   // Make the radius of the cursor dynamically change based on loudness
-  const radius = Math.max(10, 200 * (loudness / 100)); // Minimum radius of 50px, grows as loudness increases
+  const radius = Math.max(5, 200 * (loudness / 100)); // Minimum radius of 50px, grows as loudness increases
 
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
@@ -117,7 +125,7 @@ function renderFrame() {
     const dist = Math.sqrt(Math.pow(mouseX - xPos, 2) + Math.pow(mouseY - yPos, 2));
 
     // Adjust the opacity of the blob based on the distance from the cursor
-    let blobOpacity = 0.1;
+    let blobOpacity = 0.01;
     if (dist < radius) {
       // If the blob is within the radius, adjust opacity based on proximity
       blobOpacity = opacity * (1 - dist / radius);
@@ -134,7 +142,7 @@ function renderFrame() {
   // Draw the cursor circle with dynamic radius based on loudness
   ctx.beginPath();
   ctx.arc(mouseX, mouseY, radius, 0, Math.PI * 2); // Draw a circle at the mouse position
-  ctx.fillStyle = 'rgba(199, 161, 255, 0.3)'; // Light purple color for the cursor
+  ctx.fillStyle = 'rgba(199, 161, 255, 0.1)'; // Light purple color for the cursor
   ctx.fill();
 
   // Request the next frame to continue the animation
@@ -144,8 +152,14 @@ function renderFrame() {
 // Start the visualizer once the audio is playing
 audioElement.onplay = function() {
   audioContext.resume().then(() => {
+    isAudioPlaying = true; // Set the flag to true when audio starts playing
     renderFrame();
   });
+};
+
+// Pause event to set opacity to 0 when audio is stopped
+audioElement.onpause = function() {
+  isAudioPlaying = false; // Set the flag to false when audio is paused
 };
 
 // Drag and drop functionality for the canvas
