@@ -9,7 +9,7 @@ let dropArea = null; // Store the coordinates of the drop area
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
-  canvas.width = window.innerWidth * 0.8; // 80% of the screen width
+  canvas.width = window.innerWidth * 1; // 80% of the screen width
   canvas.height = window.innerHeight * 0.8; // 80% of the screen height
 }
 
@@ -46,7 +46,7 @@ let frameCounter = 0;
 function renderFrame() {
   frameCounter++;
 
-  // Only update the blobs every frameDelay frames
+  // Only update the blobs every `frameDelay` frames
   if (frameCounter < frameDelay) {
     requestAnimationFrame(renderFrame); // Skip this frame
     return;
@@ -95,8 +95,9 @@ function renderFrame() {
   const mouseX = canvas.mouseX || 0;
   const mouseY = canvas.mouseY || 0;
 
-  // Set the radius of the circle that will control the opacity
-  const radius = 500; // Change this value to control the size of the "glowing" area
+  // Set the radius of the circle that will control the opacity and size
+  // Make the radius of the cursor dynamically change based on loudness
+  const radius = Math.max(50, 200 * (loudness / 100)); // Minimum radius of 50px, grows as loudness increases
 
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
@@ -129,6 +130,12 @@ function renderFrame() {
     ctx.globalAlpha = blobOpacity; // Set the opacity for each blob based on proximity to the cursor
     ctx.fill();
   }
+
+  // Draw the cursor circle with dynamic radius based on loudness
+  ctx.beginPath();
+  ctx.arc(mouseX, mouseY, radius, 0, Math.PI * 2); // Draw a circle at the mouse position
+  ctx.fillStyle = 'rgba(199, 161, 255, 0.3)'; // Light purple color for the cursor
+  ctx.fill();
 
   // Request the next frame to continue the animation
   requestAnimationFrame(renderFrame);
