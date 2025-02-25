@@ -231,3 +231,30 @@ main p {
     transform: translate(-50%, -50%); /* Adjust to truly center */
     opacity: 1; /* Initially visible */
 }
+
+/* Style for the upload button */
+#upload-button {
+    background-color: #C7A1FF; /* Neon purple background */
+    color: black; /* Black text color */
+    padding: 12px 25px; /* Add padding for better button size */
+    font-family: 'Courier New', Courier, monospace; /* Use the same font as the rest of the site */
+    font-weight: bold; /* Make the text bold */
+    font-size: 1.5rem; /* Set the font size to match the text size */
+    border: none; /* Remove the default border */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+    cursor: pointer; /* Change the cursor to pointer to indicate it's clickable */
+}
+
+/* Hover effect for the upload button */
+#upload-button:hover {
+    background-color: #B08DFF; /* Slightly darker purple for hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+    box-shadow: 0 0 15px rgba(199, 161, 255, 0.7); /* Add a soft glow effect */
+}
+
+/* Focus effect for the upload button */
+#upload-button:focus {
+    outline: none; /* Remove the default focus outline */
+    box-shadow: 0 0 10px rgba(199, 161, 255, 0.8); /* Soft glow when focused */
+}
