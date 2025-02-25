@@ -9,8 +9,8 @@ let fileDropped = false; // Flag to check if a file has been dropped
 // Track positions and velocities of blobs
 let blobs = [];
 
-// Create audioContext
-const audioContext = new (window.AudioContext || window.webkitAudioContext)(); // Initialize audioContext
+// Create the audioContext BEFORE any event handler (important to initialize early)
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioContext.createAnalyser();
 analyser.fftSize = 256;  // Defines the frequency bins
 const bufferLength = analyser.frequencyBinCount;
@@ -45,8 +45,11 @@ for (let i = 0; i < 50; i++) { // Generate some blobs at the start
 
 // Visualizer function (renderFrame remains mostly unchanged)
 function renderFrame() {
+  // Get frequency data and clear the canvas
+  analyser.getByteFrequencyData(frequencyData);
   ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas each frame
 
+  // Background color change when file is dropped
   if (fileDropped) {
     ctx.fillStyle = 'rgba(0, 0, 0, 0)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -87,22 +90,21 @@ function renderFrame() {
     const size = Math.random() * maxSize;
     const randomPurple = purpleShades[Math.floor(Math.random() * purpleShades.length)];
 
+    // Draw blob
     ctx.beginPath();
     ctx.ellipse(blob.xPos, blob.yPos, size, size / 1.5, Math.random() * Math.PI, 0, Math.PI * 2);
     ctx.fillStyle = randomPurple;
     ctx.fill();
   }
 
-  // Debugging: Log blob positions to ensure they are being created and moved
-  // console.log(blobs);
-
-  requestAnimationFrame(renderFrame); // Keep animating the next frame
+  // Request the next frame
+  requestAnimationFrame(renderFrame);
 }
 
 // Start the visualizer once the audio is playing
 audioElement.onplay = function() {
   audioContext.resume().then(() => {
-    renderFrame();
+    renderFrame(); // Start the visualizer
   });
 };
 
