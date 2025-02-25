@@ -258,3 +258,52 @@ main p {
     outline: none; /* Remove the default focus outline */
     box-shadow: 0 0 10px rgba(199, 161, 255, 0.8); /* Soft glow when focused */
 }
+
+/* Style the audio player to match the purple theme */
+audio {
+    width: 60%; /* Adjust the width of the audio player */
+    border: none;
+    outline: none;
+    background-color: #C7A1FF; /* Set the background color of the audio player */
+    border-radius: 10px; /* Rounded corners for the audio player */
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(199, 161, 255, 0.6); /* Soft purple glow around the audio player */
+}
+
+/* Style the audio player progress bar */
+audio::-webkit-media-controls-panel {
+    background-color: #C7A1FF; /* Purple background for the control panel */
+}
+
+audio::-webkit-media-controls-play-button {
+    background-color: #D9A2FF; /* Lighter purple for the play button */
+}
+
+audio::-webkit-media-controls-volume-slider {
+    background-color: #B08DFF; /* Lighter purple for the volume slider */
+}
+
+audio::-webkit-media-controls-volume-level {
+    background-color: #C7A1FF; /* Purple for the volume level indicator */
+}
+
+audio::-webkit-media-controls-current-time {
+    color: #C7A1FF; /* Purple color for the current time text */
+}
+
+audio::-webkit-media-controls-time-remaining {
+    color: #C7A1FF; /* Purple color for the remaining time text */
+}
+
+/* Style the seek bar */
+audio::-webkit-media-controls-timeline {
+    background-color: #B08DFF; /* Lighter purple for the timeline */
+}
+
+audio::-webkit-media-controls-seek-backward-button {
+    background-color: #D9A2FF; /* Lighter purple for seek back button */
+}
+
+audio::-webkit-media-controls-seek-forward-button {
+    background-color: #D9A2FF; /* Lighter purple for seek forward button */
+}
