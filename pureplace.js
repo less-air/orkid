@@ -1,14 +1,12 @@
-// Get references to the audio, canvas, drop text, and upload button elements
+// Get references to the audio, canvas, and drop text elements
 const audioElement = document.getElementById('audio');
 const canvas = document.getElementById('pureplace');
 const ctx = canvas.getContext('2d');
-const dropText = document.getElementById('drop-text');
-const uploadButton = document.getElementById('upload-button');
+const dropText = document.getElementById('drop-text'); // Get the "Plant your audio seed here" text element
+const uploadButton = document.getElementById('upload-button'); // Upload button
 const audioUploadInput = document.getElementById('audio-upload-input'); // Hidden file input
 
 let fileDropped = false; // Flag to check if a file has been dropped
-let dropArea = null; // Store the coordinates of the drop area
-let isAudioPlaying = false; // Flag to track if audio is playing
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
@@ -65,13 +63,6 @@ function renderFrame() {
   // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // If audio is paused or stopped, make everything on the canvas invisible (opacity 0)
-  if (!isAudioPlaying) {
-    ctx.globalAlpha = 0; // Set opacity to 0 (fully transparent)
-  } else {
-    ctx.globalAlpha = 1; // Set opacity back to normal (fully visible)
-  }
-
   // If a file has been dropped, set the background to black (transparent) after the drop
   if (fileDropped) {
     ctx.fillStyle = 'rgba(0, 0, 0, 0)'; // Transparent background (black)
@@ -105,8 +96,8 @@ function renderFrame() {
   const mouseX = canvas.mouseX || 0;
   const mouseY = canvas.mouseY || 0;
 
-  // Set the radius of the circle that will control the opacity and size
-  const radius = Math.max(5, 200 * (loudness / 100)); // Minimum radius of 5px, grows as loudness increases
+  // Set the radius of the circle that will control the opacity
+  const radius = 500 * (loudness / 100); // The cursor radius grows based on the loudness
 
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
@@ -126,7 +117,7 @@ function renderFrame() {
     const dist = Math.sqrt(Math.pow(mouseX - xPos, 2) + Math.pow(mouseY - yPos, 2));
 
     // Adjust the opacity of the blob based on the distance from the cursor
-    let blobOpacity = 0.01;
+    let blobOpacity = 0;
     if (dist < radius) {
       // If the blob is within the radius, adjust opacity based on proximity
       blobOpacity = opacity * (1 - dist / radius);
@@ -140,12 +131,6 @@ function renderFrame() {
     ctx.fill();
   }
 
-  // Draw the cursor circle with dynamic radius based on loudness
-  ctx.beginPath();
-  ctx.arc(mouseX, mouseY, radius, 0, Math.PI * 2); // Draw a circle at the mouse position
-  ctx.fillStyle = 'rgba(199, 161, 255, 0.1)'; // Light purple color for the cursor
-  ctx.fill();
-
   // Request the next frame to continue the animation
   requestAnimationFrame(renderFrame);
 }
@@ -153,14 +138,8 @@ function renderFrame() {
 // Start the visualizer once the audio is playing
 audioElement.onplay = function() {
   audioContext.resume().then(() => {
-    isAudioPlaying = true; // Set the flag to true when audio starts playing
     renderFrame();
   });
-};
-
-// Pause event to set opacity to 0 when audio is stopped
-audioElement.onpause = function() {
-  isAudioPlaying = false; // Set the flag to false when audio is paused
 };
 
 // Drag and drop functionality for the canvas
@@ -196,20 +175,16 @@ canvas.addEventListener('drop', function(e) {
   }
 });
 
-// Track mouse position to create the cursor-centered opacity effect
-canvas.addEventListener('mousemove', function(e) {
-  canvas.mouseX = e.offsetX; // Set the mouse X position on the canvas
-  canvas.mouseY = e.offsetY; // Set the mouse Y position on the canvas
-});
-
-// Upload button event to trigger file input for mobile users
+// Upload button functionality for mobile users
 uploadButton.addEventListener('click', function() {
-  audioUploadInput.click(); // Trigger the file input dialog when the upload button is clicked
+  audioUploadInput.click(); // Trigger the hidden file input click
 });
 
-// Handle file selection from the file input
+// Handle file input change (when a file is selected through the upload button)
 audioUploadInput.addEventListener('change', function(e) {
   const file = e.target.files[0];
 
   if (file && file.type.startsWith('audio/')) {
-   
+    const fileURL = URL.createObjectURL(file);
+    audioElement.src = fileURL; // Set the audio element's source to the uploaded file
+    audioElement.play(); // Automatically play the audio when the file is uploaded
