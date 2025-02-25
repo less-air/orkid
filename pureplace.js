@@ -32,7 +32,7 @@ window.addEventListener('resize', resizeCanvas);
 function createBlob() {
   return {
     xPos: Math.random() * canvas.width, // Random horizontal position
-    yPos: Math.random() * canvas.height / 2, // Start from the upper half of the canvas
+    yPos: 0, // Start from the top of the canvas
     velocityY: 0, // Initial downward velocity is 0 (gravity will affect it)
     velocityX: (Math.random() - 0.5) * 0.2, // Random horizontal velocity
   };
@@ -69,8 +69,8 @@ function renderFrame() {
     let blob = blobs[i]; // Access the current blob
 
     // Apply gravity (downward acceleration)
-    blob.velocityY += 0.05;  // Adjust this for the speed of falling (gravity effect)
-    
+    blob.velocityY += 0.01;  // Reduce gravity to slow down falling
+
     // Update position based on velocity
     blob.yPos += blob.velocityY;
 
@@ -95,6 +95,13 @@ function renderFrame() {
     ctx.ellipse(blob.xPos, blob.yPos, size, size / 1.5, Math.random() * Math.PI, 0, Math.PI * 2);
     ctx.fillStyle = randomPurple;
     ctx.fill();
+  }
+
+  // Continuously generate new blobs
+  if (fileDropped) {
+    if (blobs.length < 200) { // Control the number of blobs
+      blobs.push(createBlob()); // Add a new blob every frame
+    }
   }
 
   // Request the next frame
