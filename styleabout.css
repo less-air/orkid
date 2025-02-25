@@ -110,7 +110,12 @@ h2 {
     margin-bottom: 20px; /* Adds space below the 'We are orKid' heading */
 }
 
-p {
+p.centered {
     margin-top: 20px; /* Adds space above 'Art - Music - Clothing' */
+    text-align: center; /* Keeps this text centered */
+}
+
+p.left-aligned {
+    margin-top: 20px; /* Adds space above 'orKid is multidisciplinary...' */
     text-align: left; /* Aligns the text to the left */
 }
