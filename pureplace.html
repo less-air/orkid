@@ -13,6 +13,13 @@
 
   <main>
     <section id="visualizer-section" class="hero">
+      <!-- Text above the canvas -->
+      <div id="above-canvas-text" class="visualizer-text">
+        Blizzard of petals
+        Embrace and listen to it
+        Your torch leads the way
+      </div>
+
       <!-- The canvas element now doubles as the drop area -->
       <canvas id="pureplace"></canvas>
       <!-- Text prompt that will disappear once an audio file is dropped -->
@@ -26,6 +33,12 @@
         <source id="audioSource" src="your-audio-file.mp3" type="audio/mp3">
         Your browser does not support the audio element.
       </audio>
+
+      <!-- Text below the audio player -->
+      <div id="below-audio-text" class="visualizer-text">
+        <a href="https://www.example.com" target="_blank">Return home</a>
+      </div>
+
       <!-- Hidden file input for mobile upload -->
       <input type="file" id="audio-upload-input" style="display: none;" accept="audio/*">
     </section>
