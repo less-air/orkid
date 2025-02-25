@@ -117,7 +117,7 @@ function renderFrame() {
     const dist = Math.sqrt(Math.pow(mouseX - xPos, 2) + Math.pow(mouseY - yPos, 2));
 
     // Adjust the opacity of the blob based on the distance from the cursor
-    let blobOpacity = 0.05;
+    let blobOpacity = 0.1;
     if (dist < radius) {
       // If the blob is within the radius, adjust opacity based on proximity
       blobOpacity = opacity * (1 - dist / radius);
