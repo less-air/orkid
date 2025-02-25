@@ -161,9 +161,8 @@ body {
 
 /* Style for the canvas to make it responsive and styled */
 canvas {
-    border: 2px dashed #C7A1FF; /* Dashed border around the canvas to indicate drop area */
     box-shadow: 0 0 20px rgba(199, 161, 255, 0.5); /* Soft purple glow */
-    width: 80%; /* Make the canvas take up 80% of the width */
+    width: 100%; /* Make the canvas take up 80% of the width */
     height: 80%; /* Make the canvas take up 80% of the height */
     display: block; /* Ensures it's a block element */
     margin: 0 auto; /* Center the canvas */
@@ -179,8 +178,8 @@ canvas.no-glow {
 
 /* Style the canvas when a file is dragged over it */
 canvas.dragover {
-    border-color: #D9A2FF; /* Lighter purple border when dragging over */
-    background-color: rgba(199, 161, 255, 0.3); /* Slightly darker purple when dragged over */
+    border-color: #C7A1FF; /* Lighter purple border when dragging over */
+    background-color: rgba(0, 0, 0, 0); /* Slightly darker purple when dragged over */
 }
 
 /* Style the audio player to match the purple color */
