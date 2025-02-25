@@ -188,3 +188,17 @@ audioUploadInput.addEventListener('change', function(e) {
     const fileURL = URL.createObjectURL(file);
     audioElement.src = fileURL; // Set the audio element's source to the uploaded file
     audioElement.play(); // Automatically play the audio when the file is uploaded
+
+    // Hide the "Plant your audio seed here" text
+    dropText.style.opacity = '0'; // Fade out the text
+
+    // Set the flag to true to indicate that a file has been uploaded
+    fileDropped = true;
+  } else {
+    alert('Please upload a valid audio file!');
+  }
+});
+
+// Track mouse position to create the cursor-centered opacity effect
+canvas.addEventListener('mousemove', function(e) {
+  canvas.mouseX = e.offsetX;
