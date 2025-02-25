@@ -9,7 +9,7 @@ let dropArea = null; // Store the coordinates of the drop area
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
-  canvas.width = window.innerWidth * 1; // 80% of the screen width
+  canvas.width = window.innerWidth * 0.8; // 80% of the screen width
   canvas.height = window.innerHeight * 0.8; // 80% of the screen height
 }
 
