@@ -10,7 +10,7 @@ let fileDropped = false; // Flag to check if a file has been dropped
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
-  canvas.width = window.innerWidth * 1; // 80% of the screen width
+  canvas.width = window.innerWidth * 1; // 100% of the screen width
   canvas.height = window.innerHeight * 0.8; // 80% of the screen height
 }
 
@@ -97,7 +97,7 @@ function renderFrame() {
   const mouseY = canvas.mouseY || 0;
 
   // Set the radius of the circle that will control the opacity
-  const radius = 500 * (loudness / 100); // The cursor radius grows based on the loudness
+  const radius = 5 * (loudness / 100); // The cursor radius grows based on the loudness
 
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
@@ -117,7 +117,7 @@ function renderFrame() {
     const dist = Math.sqrt(Math.pow(mouseX - xPos, 2) + Math.pow(mouseY - yPos, 2));
 
     // Adjust the opacity of the blob based on the distance from the cursor
-    let blobOpacity = 0;
+    let blobOpacity = 0.01;
     if (dist < radius) {
       // If the blob is within the radius, adjust opacity based on proximity
       blobOpacity = opacity * (1 - dist / radius);
