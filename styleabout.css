@@ -41,7 +41,7 @@ header h1 {
     transition: all 0.3s ease; /* Smooth transition */
     text-decoration: none; /* Remove underline */
     opacity: 1;
-    margin-bottom: 40px; /* Add space between header and navigation */
+    margin-bottom: 0px; /* Add space between header and navigation */
 }
 
 /* Remove bullet points from the navigation menu */
