@@ -59,7 +59,7 @@ nav ul li {
 
 /* Add some margin below the navigation */
 nav {
-    margin-bottom: 80px; /* Space between navigation and next section */
+    margin-bottom: 40px; /* Space between navigation and next section */
 }
 
 /* Style for the navigation links */
@@ -89,9 +89,9 @@ nav ul li a:hover {
 
 /* Add spacing between the navigation buttons and the content below */
 main {
-    margin-top: 80px; /* Adds more space between the navigation and the content below */
+    margin-top: 40px; /* Adds more space between the navigation and the content below */
     padding-top: 40px;
-    text-align: left;
+    text-align: center;
 }
 
 /* Section headings */
