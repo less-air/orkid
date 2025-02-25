@@ -9,6 +9,13 @@ let fileDropped = false; // Flag to check if a file has been dropped
 // Track positions and velocities of blobs
 let blobs = [];
 
+// Create audioContext
+const audioContext = new (window.AudioContext || window.webkitAudioContext)(); // Initialize audioContext
+const analyser = audioContext.createAnalyser();
+analyser.fftSize = 256;  // Defines the frequency bins
+const bufferLength = analyser.frequencyBinCount;
+const frequencyData = new Uint8Array(bufferLength);
+
 // Function to resize canvas based on window size
 function resizeCanvas() {
   canvas.width = window.innerWidth;  // Set canvas width to full screen width
