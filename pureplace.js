@@ -11,8 +11,8 @@ let blobs = [];
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
-  canvas.width = window.innerWidth * 1; // 100% of the screen width
-  canvas.height = window.innerHeight * 0.8; // 80% of the screen height
+  canvas.width = window.innerWidth;  // Set canvas width to full screen width
+  canvas.height = window.innerHeight * 0.8; // 80% of screen height
 }
 
 // Call resizeCanvas to set the initial canvas size
@@ -24,7 +24,7 @@ window.addEventListener('resize', resizeCanvas);
 // Function to create a new blob
 function createBlob() {
   return {
-    xPos: Math.random() * canvas.width,
+    xPos: Math.random() * canvas.width, // Random horizontal position
     yPos: Math.random() * canvas.height / 2, // Start from the upper half of the canvas
     velocityY: 0, // Initial downward velocity is 0 (gravity will affect it)
     velocityX: (Math.random() - 0.5) * 0.2, // Random horizontal velocity
@@ -38,11 +38,7 @@ for (let i = 0; i < 50; i++) { // Generate some blobs at the start
 
 // Visualizer function (renderFrame remains mostly unchanged)
 function renderFrame() {
-  // Get frequency and time-domain data
-  analyser.getByteFrequencyData(frequencyData);
-  timeDomainAnalyser.getByteTimeDomainData(timeDomainData);
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas each frame
 
   if (fileDropped) {
     ctx.fillStyle = 'rgba(0, 0, 0, 0)';
@@ -57,18 +53,6 @@ function renderFrame() {
 
   ctx.shadowBlur = 20;
   ctx.shadowColor = "rgba(199, 161, 255, 0.6)";
-
-  let sum = 0;
-  for (let i = 0; i < timeDomainData.length; i++) {
-    sum += timeDomainData[i];
-  }
-  const averageLoudness = sum / timeDomainData.length;
-  const loudness = (averageLoudness / 128) * 100;
-  const opacity = loudness / 100;
-
-  const mouseX = canvas.mouseX || 0;
-  const mouseY = canvas.mouseY || 0;
-  const radius = 500;
 
   // Apply gravity to each blob (make them fall slowly)
   for (let i = 0; i < blobs.length; i++) {
@@ -92,27 +76,20 @@ function renderFrame() {
       blob.velocityY = 0;  // Stop the downward motion
     }
 
-    const size = (frequencyData[i] / 4 + Math.random() * maxSize) * (loudness / 100);
+    // Random size based on frequency data (or static here for simplicity)
+    const size = Math.random() * maxSize;
     const randomPurple = purpleShades[Math.floor(Math.random() * purpleShades.length)];
-
-    const dist = Math.sqrt(Math.pow(mouseX - blob.xPos, 2) + Math.pow(mouseY - blob.yPos, 2));
-
-    let blobOpacity = 0;
-    if (dist < radius) {
-      blobOpacity = opacity * (1 - dist / radius);
-    }
 
     ctx.beginPath();
     ctx.ellipse(blob.xPos, blob.yPos, size, size / 1.5, Math.random() * Math.PI, 0, Math.PI * 2);
     ctx.fillStyle = randomPurple;
-    ctx.globalAlpha = blobOpacity;
     ctx.fill();
   }
 
   // Debugging: Log blob positions to ensure they are being created and moved
   // console.log(blobs);
 
-  requestAnimationFrame(renderFrame);
+  requestAnimationFrame(renderFrame); // Keep animating the next frame
 }
 
 // Start the visualizer once the audio is playing
