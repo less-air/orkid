@@ -1,8 +1,10 @@
-// Get references to the audio, canvas, and drop text elements
+// Get references to the audio, canvas, drop text, and upload button elements
 const audioElement = document.getElementById('audio');
 const canvas = document.getElementById('pureplace');
 const ctx = canvas.getContext('2d');
-const dropText = document.getElementById('drop-text'); // Get the "Plant your audio seed here" text element
+const dropText = document.getElementById('drop-text');
+const uploadButton = document.getElementById('upload-button');
+const audioUploadInput = document.getElementById('audio-upload-input'); // Hidden file input
 
 let fileDropped = false; // Flag to check if a file has been dropped
 let dropArea = null; // Store the coordinates of the drop area
@@ -76,7 +78,7 @@ function renderFrame() {
     ctx.fillRect(0, 0, canvas.width, canvas.height); // Apply the transparent fill
   } else {
     // If no file is dropped, we can keep the regular behavior for background
-    ctx.fillStyle = 'rgba(0, 0, 0, 0)'; // Light black or semi-transparent background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Light black or semi-transparent background
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
@@ -104,8 +106,7 @@ function renderFrame() {
   const mouseY = canvas.mouseY || 0;
 
   // Set the radius of the circle that will control the opacity and size
-  // Make the radius of the cursor dynamically change based on loudness
-  const radius = Math.max(5, 200 * (loudness / 100)); // Minimum radius of 50px, grows as loudness increases
+  const radius = Math.max(5, 200 * (loudness / 100)); // Minimum radius of 5px, grows as loudness increases
 
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
@@ -200,3 +201,15 @@ canvas.addEventListener('mousemove', function(e) {
   canvas.mouseX = e.offsetX; // Set the mouse X position on the canvas
   canvas.mouseY = e.offsetY; // Set the mouse Y position on the canvas
 });
+
+// Upload button event to trigger file input for mobile users
+uploadButton.addEventListener('click', function() {
+  audioUploadInput.click(); // Trigger the file input dialog when the upload button is clicked
+});
+
+// Handle file selection from the file input
+audioUploadInput.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+
+  if (file && file.type.startsWith('audio/')) {
+   
