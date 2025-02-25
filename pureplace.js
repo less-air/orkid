@@ -69,7 +69,7 @@ function renderFrame() {
     let blob = blobs[i]; // Access the current blob
 
     // Apply gravity (downward acceleration)
-    blob.velocityY += 0.01;  // Reduce gravity to slow down falling
+    blob.velocityY += 0.001;  // Reduce gravity to slow down falling
 
     // Update position based on velocity
     blob.yPos += blob.velocityY;
@@ -99,7 +99,7 @@ function renderFrame() {
 
   // Continuously generate new blobs
   if (fileDropped) {
-    if (blobs.length < 200) { // Control the number of blobs
+    if (blobs.length < 2000) { // Control the number of blobs
       blobs.push(createBlob()); // Add a new blob every frame
     }
   }
