@@ -97,7 +97,7 @@ function renderFrame() {
   const mouseY = canvas.mouseY || 0;
 
   // Set the radius of the circle that will control the opacity
-  const radius = 5 * (loudness / 100); // The cursor radius grows based on the loudness
+  const radius = 50 * (loudness / 100); // The cursor radius grows based on the loudness
 
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
