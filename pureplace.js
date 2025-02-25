@@ -39,7 +39,7 @@ analyser.connect(audioContext.destination);
 timeDomainAnalyser.connect(audioContext.destination);
 
 // Frame delay interval (how often we update the blobs)
-const frameDelay = 5; // Every 5 frames (you can increase this value to update less frequently)
+const frameDelay = 2; // Every 5 frames (you can increase this value to update less frequently)
 let frameCounter = 0;
 
 // Visualizer function
@@ -96,7 +96,7 @@ function renderFrame() {
   const mouseY = canvas.mouseY || 0;
 
   // Set the radius of the circle that will control the opacity
-  const radius = 150; // Change this value to control the size of the "glowing" area
+  const radius = 500; // Change this value to control the size of the "glowing" area
 
   // Draw organic, scattered blobs based on frequency data
   for (let i = 0; i < bufferLength; i++) {
