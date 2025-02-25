@@ -1,13 +1,13 @@
 // Track positions and velocities of blobs
 let blobs = [];
 
-// Function to generate a new blob
+// Function to generate a new blob with a slight upward velocity (for slow falling)
 function createBlob() {
   return {
     xPos: Math.random() * canvas.width,
-    yPos: Math.random() * canvas.height,
-    velocityX: (Math.random() - 0.5) * 0.2, // Slow horizontal velocity
-    velocityY: (Math.random() - 0.5) * 0.2, // Slow vertical velocity
+    yPos: Math.random() * canvas.height / 2, // Start from the upper half of the canvas
+    velocityY: 0, // Initial downward velocity is 0 (gravity will affect it)
+    velocityX: (Math.random() - 0.5) * 0.2, // Random horizontal velocity
   };
 }
 
@@ -58,28 +58,29 @@ function renderFrame() {
   const mouseY = canvas.mouseY || 0;
   const radius = 500;
 
-  // Move each blob based on its velocity and update its position
-  for (let i = 0; i < bufferLength; i++) {
-    let barHeight = frequencyData[i];
+  // Apply gravity to each blob (make them fall slowly)
+  for (let i = 0; i < blobs.length; i++) {
     let blob = blobs[i]; // Access the current blob
 
-    // Update blob position based on its velocity
-    blob.xPos += blob.velocityX;
+    // Apply gravity (downward acceleration)
+    blob.velocityY += 0.05;  // Adjust this for the speed of falling (gravity effect)
+    
+    // Update position based on velocity
     blob.yPos += blob.velocityY;
 
-    // Slow down the movement by controlling the velocity range
-    blob.velocityX *= 0.98;  // Slight drag effect on horizontal velocity
-    blob.velocityY *= 0.98;  // Slight drag effect on vertical velocity
+    // Add horizontal motion for some randomness
+    blob.xPos += blob.velocityX;
 
-    // Add some random bouncing effect if the blob reaches the edge of the canvas
-    if (blob.xPos <= 0 || blob.xPos >= canvas.width) {
-      blob.velocityX *= -1;
-    }
-    if (blob.yPos <= 0 || blob.yPos >= canvas.height) {
-      blob.velocityY *= -1;
+    // Slow down the horizontal movement for a natural drift effect
+    blob.velocityX *= 0.99;
+
+    // If the blob reaches the bottom of the canvas, stop it from falling further
+    if (blob.yPos >= canvas.height - 5) {
+      blob.yPos = canvas.height - 5;  // Keep it at the bottom edge
+      blob.velocityY = 0;  // Stop the downward motion
     }
 
-    const size = (barHeight / 4 + Math.random() * maxSize) * (loudness / 100);
+    const size = (frequencyData[i] / 4 + Math.random() * maxSize) * (loudness / 100);
     const randomPurple = purpleShades[Math.floor(Math.random() * purpleShades.length)];
 
     const dist = Math.sqrt(Math.pow(mouseX - blob.xPos, 2) + Math.pow(mouseY - blob.yPos, 2));
