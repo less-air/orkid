@@ -1,72 +1,33 @@
-/* Remove bullet points from the navigation menu */
-nav ul {
-    list-style-type: none; /* Removes the bullets */
-    padding: 0; /* Removes any padding around the list */
-    margin: 0; /* Removes any margin around the list */
-}
-
-/* Style for the navigation links */
-nav ul li {
-    display: inline; /* Makes the list items appear in a horizontal row */
-    margin-right: 20px; /* Adds space between the list items */
-}
-
-/* Add more space after the 'art - music - gallery' and before the navigation items */
-nav ul {
-    margin-top: 40px; /* Adds space between the previous section and the nav bar */
-}
-
-/* Style for the navigation links */
-nav ul li a {
-    color: #C7A1FF; /* Set the neon purple color for links */
-    text-decoration: none; /* Remove underline */
+/* Additional margin to space out 'art - music - gallery' and navigation buttons */
+header h1 {
+    color: #C7A1FF;
+    font-size: 2.5rem;
     font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: none;
     opacity: 1;
-    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    margin-bottom: 30px; /* Added space below the header */
 }
 
-/* Neon glow effect on hover */
-nav ul li a:hover {
-    color: #D9A2FF; /* Slightly lighter purple on hover */
-    opacity: 1;
-    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF; /* Neon glow effect */
+/* Added space between navigation links and other content */
+nav {
+    margin-bottom: 40px; /* Increased space below navigation */
 }
 
-/* Hero section */
+/* Add space between navigation buttons and the section with the text */
 .hero {
-    background-color: black; /* Darker black */
+    margin-top: 40px; /* Adds more space above the 'orKid is a multidisciplinary...' text */
+    background-color: black;
     color: #C7A1FF;
     text-align: center;
     padding: 50px 20px;
-    margin-bottom: 60px; /* Adds more space below the hero section */
+    margin-bottom: 40px;
 }
 
-/* Main content area */
+/* Section with the main paragraph about orKid */
 main {
-    flex: 1; /* Make the main content take up the remaining space */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 40px; /* Adds more space between the visualizer and the content below */
+    padding-top: 20px;
     text-align: center;
-    margin-top: 40px; /* Adds space between the navigation and the main content */
-}
-
-/* Section headings */
-h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-/* About Section */
-#about {
-    margin-top: 60px; /* Adds more space between the navigation buttons and the about section */
-    padding: 20px;
-    text-align: center;
-}
-
-/* Increase space specifically for the text block (OrKid text) */
-#about p {
-    margin-top: 40px; /* More space between navigation and the 'orKid' text */
-    font-size: 1.5rem;
-    line-height: 1.8;
 }
