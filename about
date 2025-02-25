@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orKid-About</title>
+    <link rel="stylesheet" href="style.css"> <!-- Make sure the CSS file is linked -->
+</head>
+<body>
+    <header>
+    <h1>orKid</h1>
+    <a href="index.html">
+    </a>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            
+            <!-- Welcome text -->
+            <h2>We are orKid</h2>
+            <p>Art - Music - Clothing</p>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <!-- Update the link for 'Pure Place' to redirect to the visualizer.html -->
+                    <li><a href="pureplace.html">Pure Place</a></li>  
+                </ul>
+            <p>orKid is an art collective based in Limerick, Ireland. <br>
+</p>
+            </nav>
+            
+                       
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 orKid. All rights reserved.</p>
+    </footer>
+</body>
+</html>
