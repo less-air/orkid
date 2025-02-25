@@ -1,95 +1,181 @@
-// Visualizer function (renderFrame)
-function renderFrame() {
-  // Get frequency data and clear the canvas
-  analyser.getByteFrequencyData(frequencyData);
-  ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas each frame
+// Get references to the audio, canvas, and drop text elements
+const audioElement = document.getElementById('audio');
+const canvas = document.getElementById('pureplace');
+const ctx = canvas.getContext('2d');
+const dropText = document.getElementById('drop-text'); // Get the "Plant your audio seed here" text element
 
-  // Background color change when file is dropped
+let fileDropped = false; // Flag to check if a file has been dropped
+let dropArea = null; // Store the coordinates of the drop area
+
+// Function to resize canvas based on window size
+function resizeCanvas() {
+  canvas.width = window.innerWidth * 1; // 80% of the screen width
+  canvas.height = window.innerHeight * 0.8; // 80% of the screen height
+}
+
+// Call resizeCanvas to set the initial canvas size
+resizeCanvas();
+
+// Listen for window resize events to adjust the canvas size dynamically
+window.addEventListener('resize', resizeCanvas);
+
+// Set up the audio context and analyser
+const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+const analyser = audioContext.createAnalyser();
+analyser.fftSize = 256;  // Defines the frequency bins
+const bufferLength = analyser.frequencyBinCount;
+const frequencyData = new Uint8Array(bufferLength);
+
+// Create a new analyser for time-domain data (loudness)
+const timeDomainAnalyser = audioContext.createAnalyser();
+timeDomainAnalyser.fftSize = 256;  // Defines the size of the time-domain data
+const timeDomainData = new Uint8Array(timeDomainAnalyser.frequencyBinCount);
+
+// Connect the audio source to the analysers
+const source = audioContext.createMediaElementSource(audioElement);
+source.connect(analyser);
+source.connect(timeDomainAnalyser);
+analyser.connect(audioContext.destination);
+timeDomainAnalyser.connect(audioContext.destination);
+
+// Frame delay interval (how often we update the blobs)
+const frameDelay = 1; // Every 5 frames (you can increase this value to update less frequently)
+let frameCounter = 0;
+
+// Visualizer function
+function renderFrame() {
+  frameCounter++;
+
+  // Only update the blobs every frameDelay frames
+  if (frameCounter < frameDelay) {
+    requestAnimationFrame(renderFrame); // Skip this frame
+    return;
+  }
+
+  // Reset frame counter to start the cycle again
+  frameCounter = 0;
+
+  // Get frequency and time-domain data
+  analyser.getByteFrequencyData(frequencyData);
+  timeDomainAnalyser.getByteTimeDomainData(timeDomainData);
+
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // If a file has been dropped, set the background to black (transparent) after the drop
   if (fileDropped) {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(0, 0, 0, 0)'; // Transparent background (black)
+    ctx.fillRect(0, 0, canvas.width, canvas.height); // Apply the transparent fill
   } else {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    // If no file is dropped, we can keep the regular behavior for background
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'; // Light black or semi-transparent background
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 
-  const maxSize = 40;
-  ctx.shadowBlur = 20;
-  ctx.shadowColor = "rgba(199, 161, 255, 0.6)";
+  // Visualizer settings
+  const purpleShades = ['#C7A1FF', '#D9A2FF', '#B08DFF', '#A56EFF']; // Different shades of purple
+  const maxSize = 40; // Maximum size of blobs
+  
+  // Set shadow blur and color for the "plant-like" blobs
+  ctx.shadowBlur = 20; // Add blur
+  ctx.shadowColor = "rgba(199, 161, 255, 0.6)"; // Light purple shadow for glowing effect
 
-  // Apply gravity to each blob (make them fall slowly)
-  for (let i = 0; i < blobs.length; i++) {
-    let blob = blobs[i]; // Access the current blob
+  // Calculate loudness from time-domain data
+  let sum = 0;
+  for (let i = 0; i < timeDomainData.length; i++) {
+    sum += timeDomainData[i];
+  }
+  const averageLoudness = sum / timeDomainData.length;
+  const loudness = (averageLoudness / 128) * 100; // Normalize the loudness to a percentage (0 to 100)
 
-    // Apply gravity (downward acceleration)
-    blob.velocityY += 0.001;  // Reduce gravity to slow down falling
+  // Calculate opacity based on loudness (from 0 to 1)
+  const opacity = loudness / 100; // Map loudness (0-100) to opacity (0-1)
 
-    // Update position based on velocity
-    blob.yPos += blob.velocityY;
+  // Get the mouse position (to center the circle of opacity)
+  const mouseX = canvas.mouseX || 0;
+  const mouseY = canvas.mouseY || 0;
 
-    // Add horizontal motion for some randomness
-    blob.xPos += blob.velocityX;
+  // Set the radius of the circle that will control the opacity
+  const radius = 500; // Change this value to control the size of the "glowing" area
 
-    // Slow down the horizontal movement for a natural drift effect
-    blob.velocityX *= 0.99;
+  // Draw organic, scattered blobs based on frequency data
+  for (let i = 0; i < bufferLength; i++) {
+    let barHeight = frequencyData[i];
 
-    // If the blob reaches the bottom of the canvas, stop it from falling further
-    if (blob.yPos >= canvas.height - 5) {
-      blob.yPos = canvas.height - 5;  // Keep it at the bottom edge
-      blob.velocityY = 0;  // Stop the downward motion
+    // Random X and Y positions for scattered effect
+    const xPos = Math.random() * canvas.width;
+    const yPos = Math.random() * canvas.height;
+
+    // Set the size of each "blob" based on both the frequency data and loudness
+    const size = (barHeight / 4 + Math.random() * maxSize) * (loudness / 100); // Scale by loudness
+
+    // Randomly pick a purple shade for each blob
+    const randomPurple = purpleShades[Math.floor(Math.random() * purpleShades.length)];
+
+    // Calculate the distance from the current blob position to the cursor
+    const dist = Math.sqrt(Math.pow(mouseX - xPos, 2) + Math.pow(mouseY - yPos, 2));
+
+    // Adjust the opacity of the blob based on the distance from the cursor
+    let blobOpacity = 0;
+    if (dist < radius) {
+      // If the blob is within the radius, adjust opacity based on proximity
+      blobOpacity = opacity * (1 - dist / radius);
     }
 
-    // Calculate frequency bands
-    const lowBand = frequencyData.slice(0, 32); // Low frequencies (0-100 Hz)
-    const midBand = frequencyData.slice(32, 128); // Mid frequencies (100-1000 Hz)
-    const highBand = frequencyData.slice(128, 256); // High frequencies (1000+ Hz)
-
-    // Get the average value of each band
-    const lowAvg = lowBand.reduce((sum, value) => sum + value, 0) / lowBand.length;
-    const midAvg = midBand.reduce((sum, value) => sum + value, 0) / midBand.length;
-    const highAvg = highBand.reduce((sum, value) => sum + value, 0) / highBand.length;
-
-    // Define shades of purple
-    const purpleShades = [
-      "#C7A1FF", // Light purple
-      "#D9A2FF", // Lighter purple
-      "#B08DFF", // Medium purple
-      "#A56EFF"  // Darker purple
-    ];
-
-    // Determine the color based on the frequency band averages
-    let blobColor = "#C7A1FF"; // Default to light purple
-
-    // Choose the shade based on which band has the highest average
-    if (lowAvg > midAvg && lowAvg > highAvg) {
-      blobColor = purpleShades[0]; // Light purple for low frequencies (bass)
-    } else if (midAvg > lowAvg && midAvg > highAvg) {
-      blobColor = purpleShades[1]; // Lighter purple for mid frequencies (midrange)
-    } else if (highAvg > lowAvg && highAvg > midAvg) {
-      blobColor = purpleShades[2]; // Medium purple for high frequencies (treble)
-    }
-
-    // Size of blobs influenced by frequency data
-    const size = (lowAvg / 4 + Math.random() * maxSize);
-
-    // Set opacity based on frequency loudness (volume of frequencies)
-    const opacity = (lowAvg + midAvg + highAvg) / 255; // Normalize to a value between 0 and 1
-
-    // Draw blob
+    // Draw an organic, blob-like shape
     ctx.beginPath();
-    ctx.ellipse(blob.xPos, blob.yPos, size, size / 1.5, Math.random() * Math.PI, 0, Math.PI * 2);
-    ctx.fillStyle = blobColor; // Color based on frequency band
-    ctx.globalAlpha = opacity;  // Apply opacity based on frequency data
+    ctx.ellipse(xPos, yPos, size, size / 1.5, Math.random() * Math.PI, 0, Math.PI * 2); // Elliptical shapes for more organic feel
+    ctx.fillStyle = randomPurple; // Use a random shade of purple
+    ctx.globalAlpha = blobOpacity; // Set the opacity for each blob based on proximity to the cursor
     ctx.fill();
   }
 
-  // Continuously generate new blobs
-  if (fileDropped) {
-    if (blobs.length < 20000) { // Control the number of blobs
-      blobs.push(createBlob()); // Add a new blob every frame
-    }
-  }
-
-  // Request the next frame
+  // Request the next frame to continue the animation
   requestAnimationFrame(renderFrame);
 }
+
+// Start the visualizer once the audio is playing
+audioElement.onplay = function() {
+  audioContext.resume().then(() => {
+    renderFrame();
+  });
+};
+
+// Drag and drop functionality for the canvas
+canvas.addEventListener('dragover', function(e) {
+  e.preventDefault(); // Prevent the default behavior (prevent file opening)
+  canvas.classList.add('dragover'); // Add the 'dragover' class to style when a file is being dragged over
+});
+
+canvas.addEventListener('dragleave', function() {
+  canvas.classList.remove('dragover'); // Remove the 'dragover' class when the file is dragged out
+});
+
+canvas.addEventListener('drop', function(e) {
+  e.preventDefault(); // Prevent default behavior
+
+  canvas.classList.remove('dragover'); // Reset the 'dragover' class once the file is dropped
+
+  // Get the dropped file (the first file only)
+  const file = e.dataTransfer.files[0];
+
+  if (file && file.type.startsWith('audio/')) {
+    const fileURL = URL.createObjectURL(file);
+    audioElement.src = fileURL; // Set the audio element's source to the dropped file
+    audioElement.play(); // Automatically play the audio when the file is dropped
+
+    // Hide the "Plant your audio seed here" text
+    dropText.style.opacity = '0'; // Fade out the text
+
+    // Set the flag to true to indicate that a file has been dropped
+    fileDropped = true;
+  } else {
+    alert('Please drop a valid audio file!');
+  }
+});
+
+// Track mouse position to create the cursor-centered opacity effect
+canvas.addEventListener('mousemove', function(e) {
+  canvas.mouseX = e.offsetX; // Set the mouse X position on the canvas
+  canvas.mouseY = e.offsetY; // Set the mouse Y position on the canvas
+});
