@@ -41,7 +41,7 @@ header h1 {
     transition: all 0.3s ease; /* Smooth transition */
     text-decoration: none; /* Remove underline */
     opacity: 1;
-    margin-bottom: 0px; /* Add space between header and navigation */
+    margin-bottom: 40px; /* Add space between header and navigation */
 }
 
 /* Remove bullet points from the navigation menu */
@@ -97,7 +97,12 @@ main {
 /* Section headings */
 h2 {
     font-size: 2rem;
-    margin-bottom: 20px; /* Adds space below 'We are orKid' */
+    margin-bottom: 20px;
+}
+
+/* In case you want to create a pixel-like cursor without an image, you can use a simple CSS effect like this: */
+body {
+    cursor: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2214%22 height=%2214%22 viewBox=%220 0 14 14%22%3E%3Crect width=%2214%22 height=%2214%22 fill=%22%23C7A1FF%22/%3E%3C/svg%3E'), auto;
 }
 
 /* Add space between 'We are orKid' and 'Art - Music - Clothing' */
@@ -107,9 +112,5 @@ h2 {
 
 p {
     margin-top: 20px; /* Adds space above 'Art - Music - Clothing' */
-}
-
-/* In case you want to create a pixel-like cursor without an image, you can use a simple CSS effect like this: */
-body {
-    cursor: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2214%22 height=%2214%22 viewBox=%220 0 14 14%22%3E%3Crect width=%2214%22 height=%2214%22 fill=%22%23C7A1FF%22/%3E%3C/svg%3E'), auto;
+    text-align: left; /* Aligns the text to the left */
 }
