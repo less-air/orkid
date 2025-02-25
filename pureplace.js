@@ -11,7 +11,7 @@ function createBlob() {
   };
 }
 
-// Initialize blobs
+// Initialize blobs once, outside of renderFrame
 for (let i = 0; i < bufferLength; i++) {
   blobs.push(createBlob());
 }
@@ -98,3 +98,49 @@ function renderFrame() {
 
   requestAnimationFrame(renderFrame);
 }
+
+// Start the visualizer once the audio is playing
+audioElement.onplay = function() {
+  audioContext.resume().then(() => {
+    renderFrame();
+  });
+};
+
+// Drag and drop functionality for the canvas
+canvas.addEventListener('dragover', function(e) {
+  e.preventDefault(); // Prevent the default behavior (prevent file opening)
+  canvas.classList.add('dragover'); // Add the 'dragover' class to style when a file is being dragged over
+});
+
+canvas.addEventListener('dragleave', function() {
+  canvas.classList.remove('dragover'); // Remove the 'dragover' class when the file is dragged out
+});
+
+canvas.addEventListener('drop', function(e) {
+  e.preventDefault(); // Prevent default behavior
+
+  canvas.classList.remove('dragover'); // Reset the 'dragover' class once the file is dropped
+
+  // Get the dropped file (the first file only)
+  const file = e.dataTransfer.files[0];
+
+  if (file && file.type.startsWith('audio/')) {
+    const fileURL = URL.createObjectURL(file);
+    audioElement.src = fileURL; // Set the audio element's source to the dropped file
+    audioElement.play(); // Automatically play the audio when the file is dropped
+
+    // Hide the "Plant your audio seed here" text
+    dropText.style.opacity = '0'; // Fade out the text
+
+    // Set the flag to true to indicate that a file has been dropped
+    fileDropped = true;
+  } else {
+    alert('Please drop a valid audio file!');
+  }
+});
+
+// Track mouse position to create the cursor-centered opacity effect
+canvas.addEventListener('mousemove', function(e) {
+  canvas.mouseX = e.offsetX; // Set the mouse X position on the canvas
+  canvas.mouseY = e.offsetY; // Set the mouse Y position on the canvas
+});
