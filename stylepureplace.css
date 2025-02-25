@@ -311,10 +311,11 @@ audio::-webkit-media-controls-seek-forward-button {
 /* General styling for the text above and below the canvas/audio player */
 .visualizer-text {
     color: #C7A1FF; /* Set the text color to match the purple theme */
-    font-size: 1.5rem; /* Adjust the font size */
+    font-size: 3rem; /* Adjust the font size */
     font-weight: bold; /* Make the text bold */
     margin: 20px 0; /* Add some spacing around the text */
     text-align: center; /* Center the text */
+    line-height: 1.4; /* Add spacing between lines if necessary */
     transition: opacity 0.3s ease; /* Optional smooth fade effect */
 }
 
@@ -323,10 +324,15 @@ audio::-webkit-media-controls-seek-forward-button {
     font-size: 1.8rem; /* Slightly larger font size for emphasis */
 }
 
+#above-canvas-text div {
+  margin-bottom: 10px; /* Add space between lines */
+}
+
 /* Additional styling for text below the audio player */
 #below-audio-text {
     font-size: 1.5rem; /* Font size to match the above */
     color: #D9A2FF; /* Slightly lighter purple for the text below */
+     margin-top: 10px; /* Add space between lines */
 }
 
 /* Style for the link below the audio player */
