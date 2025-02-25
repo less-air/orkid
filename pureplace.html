@@ -15,22 +15,19 @@
     <section id="visualizer-section" class="hero">
       <!-- The canvas element now doubles as the drop area -->
       <canvas id="pureplace"></canvas>
-      
       <!-- Text prompt that will disappear once an audio file is dropped -->
       <div id="drop-text">
-        <p>Plant your audio seed here</p>
-        <!-- Upload button for mobile users -->
-        <button id="upload-button">庭</button>
+        Plant your audio seed here
+        <button id="upload-button">Upload Audio</button>
       </div>
-
-      <!-- Hidden file input for mobile users -->
-      <input type="file" id="audio-upload-input" accept="audio/*" style="display: none;"/>
 
       <!-- Audio player -->
       <audio id="audio" controls>
         <source id="audioSource" src="your-audio-file.mp3" type="audio/mp3">
         Your browser does not support the audio element.
       </audio>
+      <!-- Hidden file input for mobile upload -->
+      <input type="file" id="audio-upload-input" style="display: none;" accept="audio/*">
     </section>
   </main>
 
