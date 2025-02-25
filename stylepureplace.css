@@ -162,11 +162,11 @@ body {
 /* Style for the canvas to make it responsive and styled */
 canvas {
     box-shadow: 0 0 20px rgba(199, 161, 255, 0.5); /* Soft purple glow */
-    width: 100%; /* Make the canvas take up 80% of the width */
+    width: 100%; /* Make the canvas take up 100% of the width */
     height: 80%; /* Make the canvas take up 80% of the height */
     display: block; /* Ensures it's a block element */
     margin: 0 auto; /* Center the canvas */
-    background-color: rgba(199, 161, 255, 0.1); /* Light purple background */
+    background-color: rgba(0, 0, 0, 0); /* Light purple background */
     border-radius: 10px; /* Rounded corners */
 }
 
