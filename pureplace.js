@@ -5,14 +5,13 @@ const ctx = canvas.getContext('2d');
 const dropText = document.getElementById('drop-text'); // Get the "Plant your audio seed here" text element
 
 let fileDropped = false; // Flag to check if a file has been dropped
-let dropArea = null; // Store the coordinates of the drop area
 
 // Track positions and velocities of blobs
 let blobs = [];
 
 // Function to resize canvas based on window size
 function resizeCanvas() {
-  canvas.width = window.innerWidth * 1; // 80% of the screen width
+  canvas.width = window.innerWidth * 1; // 100% of the screen width
   canvas.height = window.innerHeight * 0.8; // 80% of the screen height
 }
 
@@ -109,6 +108,9 @@ function renderFrame() {
     ctx.globalAlpha = blobOpacity;
     ctx.fill();
   }
+
+  // Debugging: Log blob positions to ensure they are being created and moved
+  // console.log(blobs);
 
   requestAnimationFrame(renderFrame);
 }
