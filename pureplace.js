@@ -202,3 +202,5 @@ audioUploadInput.addEventListener('change', function(e) {
 // Track mouse position to create the cursor-centered opacity effect
 canvas.addEventListener('mousemove', function(e) {
   canvas.mouseX = e.offsetX;
+  canvas.mouseY = e.offsetY;
+});
