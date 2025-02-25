@@ -39,7 +39,7 @@ analyser.connect(audioContext.destination);
 timeDomainAnalyser.connect(audioContext.destination);
 
 // Frame delay interval (how often we update the blobs)
-const frameDelay = 2; // Every 5 frames (you can increase this value to update less frequently)
+const frameDelay = 1; // Every 5 frames (you can increase this value to update less frequently)
 let frameCounter = 0;
 
 // Visualizer function
