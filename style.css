@@ -6,21 +6,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none; /* Remove underline from all elements globally */
+    text-decoration: none;
 }
 
 /* Set up the basic body and font */
 body {
-    font-family: 'Cormorant Garamond', serif; /* Elegant botanical font for body text */
+    font-family: 'Cormorant Garamond', serif;
     line-height: 1.6;
-    background-color: black; /* Darker black background */
-    color: #C7A1FF; /* Bright purple text */
+    background-color: black;
+    color: #C7A1FF;
     font-size: 30px;
     padding: 0;
     display: flex;
     flex-direction: column;
     position: relative;
     transition: color 0.3s ease;
+
+    /* 🌿 Custom PNG cursor */
+    cursor: url('orkidpix0328.png') 8 8, auto; 
+    
 }
 
 /* Floral pattern for the header */
@@ -37,7 +41,7 @@ header {
 
 /* Header text (h1) styling */
 header h1 {
-    font-family: 'Rozha One', serif; /* Bold floral-inspired header font */
+    font-family: 'Rozha One', serif;
     color: #C7A1FF;
     font-size: 5rem;
     font-weight: bold;
@@ -45,28 +49,25 @@ header h1 {
     transition: all 0.3s ease;
     text-decoration: none;
     opacity: 1;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
-/* Remove bullet points from navigation menu */
+/* Navigation styles */
 nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-/* Style for the navigation links */
 nav ul li {
     display: inline;
     margin-right: 20px;
 }
 
-/* Add some margin below navigation */
 nav {
     margin-bottom: 40px;
 }
 
-/* Style for navigation links */
 nav ul li a {
     color: #C7A1FF;
     text-decoration: none;
@@ -75,7 +76,6 @@ nav ul li a {
     transition: all 0.3s ease;
 }
 
-/* Neon glow effect on hover */
 nav ul li a:hover {
     color: #D9A2FF;
     opacity: 1;
@@ -91,15 +91,15 @@ nav ul li a:hover {
     margin-bottom: 40px;
 }
 
-/* 🌸 Extra spacing between Welcome text and nav (Option 1) */
+/* Extra spacing between Welcome text and nav */
 .hero h2 {
     font-family: 'Rozha One', serif;
     font-size: 2.2rem;
-    margin-bottom: 20px; /* Space below "Welcome to ORKID" */
+    margin-bottom: 20px;
 }
 
 .hero p {
-    margin-bottom: 60px; /* More space before the navigation */
+    margin-bottom: 60px;
 }
 
 /* Main content */
@@ -116,18 +116,12 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* Pixel-style cursor */
-body {
-    cursor: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2214%22 height=%2214%22 viewBox=%220 0 14 14%22%3E%3Crect width=%2214%22 height=%2214%22 fill=%22%23C7A1FF%22/%3E%3C/svg%3E'), auto;
-}
-
-/* Centered paragraph under welcome text */
+/* Centered and left-aligned text */
 p.centered {
     margin-top: 20px;
     text-align: center;
 }
 
-/* Left-aligned paragraph for about section */
 p.left-aligned {
     margin-top: 20px;
     text-align: left;
@@ -160,4 +154,3 @@ footer {
     border-top: 1px solid #C7A1FF;
     color: #C7A1FF;
 }
-
