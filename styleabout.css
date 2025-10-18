@@ -15,7 +15,7 @@ body {
     line-height: 1.6;
     background-color: black; /* Darker black background */
     color: #C7A1FF; /* Bright purple text */
-    font-size: 18px; /* Console-like text size */
+    font-size: 30px; /* Console-like text size */
     padding: 0;
     display: flex;
     flex-direction: column; /* Stack the sections vertically */
@@ -39,7 +39,7 @@ header {
 header h1 {
     font-family: 'Rozha One', serif; /* Decorative serif for headers */
     color: #C7A1FF;
-    font-size: 2.8rem; /* Slightly larger for emphasis */
+    font-size: 5rem; /* Slightly larger for emphasis */
     font-weight: normal;
     letter-spacing: 1px;
     transition: all 0.3s ease;
