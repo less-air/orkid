@@ -168,12 +168,12 @@ p.left-aligned {
 
 /* Video styling */
 .about-video video {
-    width: 500px;
+    width: 600px;
     height: auto;
-    border: 2px solid #C7A1FF;
-    border-radius: 20px;
+    border: 0px solid #C7A1FF;
+    border-radius: 0px;
     object-fit: cover;
-    box-shadow: 0 0 20px #C7A1FF55;
+    box-shadow: 0 0 0px #C7A1FF55;
 }
 
 /* Footer */
