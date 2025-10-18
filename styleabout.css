@@ -1,4 +1,4 @@
-/* Import botanical fonts from Google Fonts */
+/* Import the botanical fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Rozha+One&display=swap');
 
 /* Reset some default styles */
@@ -6,30 +6,34 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    text-decoration: none; /* Remove underline from all elements globally */
+    text-decoration: none;
 }
 
 /* Set up the basic body and font */
 body {
-    font-family: 'Cormorant Garamond', serif; /* Botanical serif for body text */
+    font-family: 'Cormorant Garamond', serif;
     line-height: 1.6;
-    background-color: black; /* Darker black background */
-    color: #C7A1FF; /* Bright purple text */
-    font-size: 30px; /* Console-like text size */
+    background-color: black;
+    color: #C7A1FF;
+    font-size: 30px;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Stack the sections vertically */
+    flex-direction: column;
     position: relative;
-    transition: color 0.3s ease; /* Smooth color transition for text */
+    transition: color 0.3s ease;
+
+    /* 🌿 Custom PNG cursor */
+    cursor: url('orkidpix0328.png') 8 8, auto; 
+    
 }
 
 /* Floral pattern for the header */
 header {
-    color: #C7A1FF; /* Set the text color to match */
-    padding: 30px 20px; /* Increased padding for spacing */
+    color: #C7A1FF;
+    padding: 30px 20px;
     text-align: center;
-    border-bottom: 2px solid #C7A1FF; /* Subtle purple border */
-    z-index: 10; /* Ensure header stays on top */
+    border-bottom: 2px solid #C7A1FF;
+    z-index: 10;
     opacity: 1;
     width: 100%;
     position: relative;
@@ -37,45 +41,34 @@ header {
 
 /* Header text (h1) styling */
 header h1 {
-    font-family: 'Rozha One', serif; /* Decorative serif for headers */
+    font-family: 'Rozha One', serif;
     color: #C7A1FF;
-    font-size: 5rem; /* Slightly larger for emphasis */
-    font-weight: normal;
+    font-size: 5rem;
+    font-weight: bold;
     letter-spacing: 1px;
     transition: all 0.3s ease;
     text-decoration: none;
     opacity: 1;
-    margin-bottom: 40px; /* Space between header and navigation */
+    margin-bottom: 20px;
 }
 
-/* Header text hover effect (optional soft glow) */
-header h1:hover {
-    color: #D9A2FF;
-    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #D9A2FF;
-    cursor: pointer;
-}
-
-/* Remove bullet points from the navigation menu */
+/* Navigation styles */
 nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-/* Navigation links layout */
 nav ul li {
     display: inline;
     margin-right: 20px;
 }
 
-/* Add some margin below the navigation */
 nav {
     margin-bottom: 40px;
 }
 
-/* Style for the navigation links */
 nav ul li a {
-    font-family: 'Cormorant Garamond', serif;
     color: #C7A1FF;
     text-decoration: none;
     font-weight: bold;
@@ -83,8 +76,111 @@ nav ul li a {
     transition: all 0.3s ease;
 }
 
-/* Neon glow effect on hover */
 nav ul li a:hover {
     color: #D9A2FF;
     opacity: 1;
-    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30
+    text-shadow: 0 0 10px #C7A1FF, 0 0 20px #C7A1FF, 0 0 30px #C7A1FF, 0 0 40px #C7A1FF;
+}
+
+/* Hero section */
+.hero {
+    background-color: black;
+    color: #C7A1FF;
+    text-align: center;
+    padding: 50px 20px;
+    margin-bottom: 40px;
+}
+
+/* Extra spacing between Welcome text and nav */
+.hero h2 {
+    font-family: 'Rozha One', serif;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    margin-bottom: 60px;
+}
+
+/* Main content */
+main {
+    margin-top: 40px;
+    padding-top: 40px;
+    text-align: center;
+}
+
+/* Section headings */
+h2 {
+    font-family: 'Rozha One', serif;
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+/* Centered and left-aligned text */
+p.centered {
+    margin-top: 20px;
+    text-align: center;
+}
+
+p.left-aligned {
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Sketchfab embed */
+.sketchfab-embed-wrapper {
+    position: relative;
+    width: 720px;
+    height: 720px;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.sketchfab-embed-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* 🌿 About section layout */
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Left-aligned, justified text */
+.about-text p {
+    text-align: justify; /* Makes the paragraphs justified */
+    text-justify: inter-word;
+    max-width: 600px;
+    color: #C7A1FF;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* Video styling */
+.about-video video {
+    width: 500px;
+    height: auto;
+    border: 2px solid #C7A1FF;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 0 20px #C7A1FF55;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    border-top: 1px solid #C7A1FF;
+    color: #C7A1FF;
+}
