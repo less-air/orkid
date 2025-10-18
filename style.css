@@ -23,7 +23,7 @@ body {
     transition: color 0.3s ease;
 
     /* 🌿 Custom PNG cursor */
-    cursor: url('orkidpix0328.png') 8 8, auto; 
+    cursor: url('cursor.png') 8 8, auto; 
     
 }
 
@@ -154,3 +154,4 @@ footer {
     border-top: 1px solid #C7A1FF;
     color: #C7A1FF;
 }
+
